@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+linter(){
+  echo "starting linter..."
+  npm run lint
+}
+
+build(){
+  echo "starting build..."
+  npm run build
+}
+
+tester(){
+  echo "starting tests..."
+  npm run test
+}
+
+precommit(){
+  linter && build && tester
+}
+
+precommit

@@ -1,0 +1,82 @@
+{
+  "root": true,
+  "ignorePatterns": ["dist", "coverage", "node_modules", "e2e"],
+  "extends": ["plugin:prettier/recommended"],
+  "rules": {
+    "prettier/prettier": "warn",
+    "@angular-eslint/no-empty-lifecycle-method": "off"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2015
+  },
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": ["tsconfig.eslint.json"],
+        "createDefaultProgram": false
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "prettier/prettier": "warn",
+        "@typescript-eslint/quotes": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-empty-lifecycle-method": "off",
+        "@typescript-eslint/no-loss-of-precision": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unsafe-argument": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/restrict-template-expressions": "off",
+        "@typescript-eslint/lines-between-class-members": "off",
+        "@typescript-eslint/unbound-method": [
+          "error",
+          {
+            "ignoreStatic": true
+          }
+        ],
+        "no-underscore-dangle": "off",
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "prefix": "app",
+            "style": "kebab-case",
+            "type": "element"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "prefix": "app",
+            "style": "camelCase",
+            "type": "attribute"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "excludedFiles": ["*inline-template-*component.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {
+        "prettier/prettier": [
+          "warn",
+          {
+            "parser": "angular"
+          }
+        ]
+      }
+    }
+  ]
+}
