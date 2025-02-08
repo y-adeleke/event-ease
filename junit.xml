@@ -1,11 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="3" failures="0" errors="0" time="1.063">
-  <testsuite name="AppComponent" errors="0" failures="0" skipped="0" timestamp="2024-09-11T23:42:59" time="0.627" tests="3">
-    <testcase classname="AppComponent should create the app" name="AppComponent should create the app" time="0.055">
-    </testcase>
-    <testcase classname="AppComponent should have the &apos;angular-base&apos; title" name="AppComponent should have the &apos;angular-base&apos; title" time="0.007">
-    </testcase>
-    <testcase classname="AppComponent should render title" name="AppComponent should render title" time="0.009">
-    </testcase>
-  </testsuite>
+<testsuites name="jest tests" tests="0" failures="0" errors="0" time="2.031">
 </testsuites>
