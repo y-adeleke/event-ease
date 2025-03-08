@@ -1,0 +1,26 @@
+<div class="container mx-auto p-4">
+  <h1 class="text-3xl font-bold mb-4">Your Created Events</h1>
+  <p-table [value]="(events$ | async) || []" class="p-datatable-gridlines">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Date & Time</th>
+        <th>Location</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-event>
+      <tr>
+        <td>{{ event.title }}</td>
+        <td>{{ event.category }}</td>
+        <td>{{ event.dateTime | date: "short" }}</td>
+        <td>{{ event.location }}</td>
+        <td>
+          <button pButton label="Edit" class="mr-2"></button>
+          <button pButton label="Delete" class="p-button-danger"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
