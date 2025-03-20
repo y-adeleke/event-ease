@@ -9,11 +9,12 @@ import { CardModule } from "primeng/card";
 import { Store } from "@ngrx/store";
 import { loadEventById } from "../../../store/actions/event.actions";
 import { selectSelectedEvent } from "../../../store/selectors/event.selectors";
+import { RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-event-detail",
   standalone: true,
-  imports: [CommonModule, ButtonModule, CardModule],
+  imports: [CommonModule, RouterModule, ButtonModule, CardModule],
   templateUrl: "./event-detail.component.html",
   styleUrls: ["./event-detail.component.scss"],
 })

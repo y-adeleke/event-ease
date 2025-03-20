@@ -7,6 +7,7 @@ import { AuthGuard } from "./core/guards/auth.guard";
 import { EventDetailComponent } from "./features/events/detail/event-detail.component";
 import { CreateEventComponent } from "./features/events/create/create-event.component";
 import { ManageEventComponent } from "./features/events/manage/manage-event.component";
+import { EventListComponent } from "./features/events/event-list/event-list.component";
 
 export const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -23,5 +24,6 @@ export const routes: Routes = [
       { path: "", redirectTo: "manage-events", pathMatch: "full" },
     ],
   },
+  { path: "events", component: EventListComponent },
   { path: "**", redirectTo: "" },
 ];
