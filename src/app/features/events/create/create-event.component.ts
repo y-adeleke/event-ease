@@ -15,31 +15,39 @@ import { Router } from "@angular/router";
   styleUrls: ["./create-event.component.scss"],
 })
 export class CreateEventComponent {
+  submitted = false;  // Flag to track form submission
+
   categories = [
-    { label: "Tech", value: "Tech" },
+    { label: "Technology", value: "Technology" },
     { label: "Music", value: "Music" },
     { label: "Sports", value: "Sports" },
+    { label: "Food & Drink", value: "Food & Drink" },
+    { label: "Arts", value: "Arts" },
+    { label: "Business", value: "Business" }
   ];
 
   createEventForm = this.fb.group({
     title: ["", Validators.required],
     description: ["", Validators.required],
     category: [null, Validators.required],
-    dateTime: [null, Validators.required],
+    date: [null, Validators.required],
+    time: [null, Validators.required], 
     location: ["", Validators.required],
-    totalTickets: [0, Validators.required],
-    price: [0, Validators.required],
+    totalTickets: [1, [Validators.required, Validators.min(1)]],
+    price: [1, [Validators.required, Validators.min(1)]],
     pictures: [""],
   });
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
+    private router: Router
   ) {}
 
   onCreate() {
+    this.submitted = true; // Mark form as submitted to show validation messages
+
     if (this.createEventForm.valid) {
-      // Handle event creation (dummy)
+      // Handle event creation (dummy for now)
       this.router.navigate(["/profile/manage-events"]);
     }
   }
