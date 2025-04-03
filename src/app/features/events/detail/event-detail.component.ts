@@ -10,11 +10,12 @@ import { Store } from "@ngrx/store";
 import { loadEventById } from "../../../store/actions/event.actions";
 import { selectSelectedEvent } from "../../../store/selectors/event.selectors";
 import { RouterModule } from "@angular/router";
+import { NavbarComponent } from "../../../shared-components/navbar/navbar.component";
 
 @Component({
   selector: "app-event-detail",
   standalone: true,
-  imports: [CommonModule, RouterModule, ButtonModule, CardModule],
+  imports: [CommonModule, RouterModule, ButtonModule, CardModule, NavbarComponent],
   templateUrl: "./event-detail.component.html",
   styleUrls: ["./event-detail.component.scss"],
 })
