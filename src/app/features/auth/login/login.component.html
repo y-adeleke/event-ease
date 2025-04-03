@@ -12,7 +12,10 @@
           <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
             <i class="pi pi-user"></i>
           </span>
-          <input pInputText id="username" formControlName="username"
+          <input
+            pInputText
+            id="username"
+            formControlName="username"
             class="w-full p-3 pl-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
             placeholder="Enter your username" />
         </div>
@@ -25,19 +28,24 @@
           <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
             <i class="pi pi-lock"></i>
           </span>
-          <p-password inputId="password" formControlName="password" [feedback]="false" [style]="{ display: 'block' }"
+          <p-password
+            inputId="password"
+            formControlName="password"
+            [feedback]="false"
+            [style]="{ display: 'block' }"
             inputStyleClass="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500 text-base"
             placeholder="Enter your password">
           </p-password>
         </div>
       </div>
 
-
       <!-- Login Button -->
       <div class="mb-4">
-        <button pButton type="submit" label="Log In"
-          class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold py-3 rounded-lg transition-all shadow-md">
-        </button>
+        <button
+          pButton
+          type="submit"
+          label="Log In"
+          class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold py-3 rounded-lg transition-all shadow-md"></button>
       </div>
 
       <!-- Sign Up Prompt -->

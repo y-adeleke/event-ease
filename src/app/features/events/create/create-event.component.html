@@ -68,7 +68,11 @@
     <!-- Title -->
     <div>
       <label class="block font-semibold mb-1 text-gray-700">Title</label>
-      <input pInputText formControlName="title" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500" placeholder="Enter event title" />
+      <input
+        pInputText
+        formControlName="title"
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+        placeholder="Enter event title" />
       <div *ngIf="createEventForm.controls.title.invalid && submitted" class="text-red-500 text-sm mt-1">
         Event title is required.
       </div>
@@ -77,7 +81,10 @@
     <!-- Description -->
     <div>
       <label class="block font-semibold mb-1 text-gray-700">Description</label>
-      <textarea formControlName="description" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500" placeholder="Write a brief description"></textarea>
+      <textarea
+        formControlName="description"
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+        placeholder="Write a brief description"></textarea>
       <div *ngIf="createEventForm.controls.description.invalid && submitted" class="text-red-500 text-sm mt-1">
         Event description is required.
       </div>
@@ -94,38 +101,41 @@
       </p-dropdown>
     </div>
 
-
     <div class="grid grid-cols-2 gap-20">
       <!-- Date Field -->
       <div>
-      <label class="block font-semibold mb-4 text-gray-700">Date</label>
-      <p-calendar 
-        formControlName="date" 
-        [showOnFocus]="true" 
-        [touchUI]="true"
-        dateFormat="dd-mm-yy"
-        placeholder="DD-MM-YYYY"
-        class="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
-      </p-calendar>
-    </div>
+        <label class="block font-semibold mb-4 text-gray-700">Date</label>
+        <p-calendar
+          formControlName="date"
+          [showOnFocus]="true"
+          [touchUI]="true"
+          dateFormat="dd-mm-yy"
+          placeholder="DD-MM-YYYY"
+          class="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
+        </p-calendar>
+      </div>
 
-    <!-- Time Field -->
-    <div>
-      <label class="block font-semibold mb-4 text-gray-700">Time</label>
-      <p-calendar 
-        formControlName="time" 
-        [timeOnly]="true"
-        [showOnFocus]="true" 
-        [touchUI]="true"
-        placeholder="HH:MM AM/PM"
-        class="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
-      </p-calendar>
+      <!-- Time Field -->
+      <div>
+        <label class="block font-semibold mb-4 text-gray-700">Time</label>
+        <p-calendar
+          formControlName="time"
+          [timeOnly]="true"
+          [showOnFocus]="true"
+          [touchUI]="true"
+          placeholder="HH:MM AM/PM"
+          class="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
+        </p-calendar>
+      </div>
     </div>
-  </div>
     <!-- Location -->
     <div>
       <label class="block font-semibold mb-1 text-gray-700">Location</label>
-      <input pInputText formControlName="location" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500" placeholder="Enter location" />
+      <input
+        pInputText
+        formControlName="location"
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+        placeholder="Enter location" />
       <div *ngIf="createEventForm.controls.location.invalid && submitted" class="text-red-500 text-sm mt-1">
         Event location is required.
       </div>
@@ -133,27 +143,42 @@
     <!-- Total Tickets -->
     <div>
       <label class="block font-semibold mb-1 text-gray-700">Total Tickets</label>
-      <input pInputText type="number" formControlName="totalTickets"
+      <input
+        pInputText
+        type="number"
+        formControlName="totalTickets"
         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
-        placeholder="Number of tickets" min="1"/>
+        placeholder="Number of tickets"
+        min="1" />
     </div>
 
     <!-- Price per Ticket -->
     <div>
       <label class="block font-semibold mb-1 text-gray-700">Price per Ticket</label>
-      <input pInputText type="number" formControlName="price"
+      <input
+        pInputText
+        type="number"
+        formControlName="price"
         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
-        placeholder="Price per ticket" min="1"/>
+        placeholder="Price per ticket"
+        min="1" />
     </div>
 
     <!-- Event Pictures (URL) -->
     <div>
       <label class="block font-semibold mb-1 text-gray-700">Event Pictures (URL)</label>
-      <input pInputText formControlName="pictures" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500" placeholder="Enter an image URL" />
+      <input
+        pInputText
+        formControlName="pictures"
+        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+        placeholder="Enter an image URL" />
     </div>
 
     <!-- Submit Button -->
-    <button pButton type="submit" label="Create Event" class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-4 py-2 rounded-lg transition">
-    </button>
+    <button
+      pButton
+      type="submit"
+      label="Create Event"
+      class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-4 py-2 rounded-lg transition"></button>
   </form>
 </div>
