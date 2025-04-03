@@ -16,4 +16,8 @@ export class AuthService {
   signup(user: User): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/members`, user);
   }
+
+  signOut(): void {
+    sessionStorage.removeItem("authToken");
+  }  
 }

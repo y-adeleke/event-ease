@@ -29,8 +29,6 @@ export class LoginComponent {
       const username = this.loginForm.value.username as string;
       const password = this.loginForm.value.password as string;
 
-      console.log("🔐 Attempting login...");
-
       this.authService.login(username, password).subscribe({
         next: token => {
           console.log("Login successful!");
