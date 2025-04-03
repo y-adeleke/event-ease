@@ -32,7 +32,7 @@ export class SignupComponent {
   onSignup() {
     if (this.signupForm.valid) {
       const user = this.signupForm.value as User;
-    
+
       this.authService.signup(user).subscribe({
         next: () => {
           console.log("Signup successful!");
@@ -40,7 +40,7 @@ export class SignupComponent {
         },
         error: err => {
           console.error("Signup failed:", err);
-        }
+        },
       });
     } else {
       console.warn("Please fill out all fields.");
