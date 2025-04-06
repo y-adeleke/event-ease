@@ -7,11 +7,12 @@ import { Event } from "../../../core/models/event.model";
 import { Observable } from "rxjs";
 import { loadEvents } from "../../../store/actions/event.actions";
 import { selectAllEvents } from "../../../store/selectors/event.selectors";
+import { NavbarComponent } from "../../../shared-components/navbar/navbar.component";
 
 @Component({
   selector: "app-event-list",
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, NavbarComponent],
   templateUrl: "./event-list.component.html",
   styleUrls: ["./event-list.component.scss"],
 })

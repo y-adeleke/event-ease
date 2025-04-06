@@ -18,7 +18,6 @@ export class SignupComponent {
   signupForm = this.fb.group({
     firstName: ["", Validators.required],
     lastName: ["", Validators.required],
-    email: ["", [Validators.required, Validators.email]],
     phone: ["", Validators.required],
     username: ["", Validators.required],
     password: ["", Validators.required],
@@ -33,9 +32,18 @@ export class SignupComponent {
   onSignup() {
     if (this.signupForm.valid) {
       const user = this.signupForm.value as User;
-      this.authService.signup(user).subscribe(() => {
-        this.router.navigate(["/login"]);
+
+      this.authService.signup(user).subscribe({
+        next: () => {
+          console.log("Signup successful!");
+          this.router.navigate(["/login"]);
+        },
+        error: err => {
+          console.error("Signup failed:", err);
+        },
       });
+    } else {
+      console.warn("Please fill out all fields.");
     }
   }
 }

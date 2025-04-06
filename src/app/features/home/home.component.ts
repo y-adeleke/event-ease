@@ -10,6 +10,7 @@ import { loadEvents } from "../../store/actions/event.actions";
 import { selectAllEvents } from "../../store/selectors/event.selectors";
 import { interval } from "rxjs";
 import { dummyEvents, eventCategories, Category, featuredEventIds } from "../../store/dummy-data";
+import { NavbarComponent } from "../../shared-components/navbar/navbar.component";
 
 interface CountdownTime {
   days: string;
@@ -21,7 +22,7 @@ interface CountdownTime {
 @Component({
   selector: "app-home",
   standalone: true,
-  imports: [CommonModule, RouterModule, InputTextModule, FormsModule],
+  imports: [CommonModule, RouterModule, InputTextModule, FormsModule, NavbarComponent],
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"],
 })

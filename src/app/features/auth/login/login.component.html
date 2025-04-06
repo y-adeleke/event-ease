@@ -22,35 +22,36 @@
       </div>
 
       <!-- Password Field -->
-      <div class="mb-4">
+      <div class="mb-6">
         <label for="password" class="block text-gray-700 font-semibold mb-1">Password</label>
         <div class="relative">
           <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
             <i class="pi pi-lock"></i>
           </span>
-          <input
-            pPassword
-            id="password"
+          <p-password
+            inputId="password"
             formControlName="password"
-            class="w-full p-3 pl-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
-            placeholder="Enter your password" />
+            [feedback]="false"
+            [style]="{ display: 'block' }"
+            inputStyleClass="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500 text-base"
+            placeholder="Enter your password">
+          </p-password>
         </div>
       </div>
 
       <!-- Login Button -->
-      <button
-        pButton
-        type="submit"
-        label="Log In"
-        class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold py-3 rounded-lg transition-all"></button>
+      <div class="mb-4">
+        <button
+          pButton
+          type="submit"
+          label="Log In"
+          class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold py-3 rounded-lg transition-all shadow-md"></button>
+      </div>
 
-      <!-- Forgot Password / Sign Up -->
-      <!-- <div class="mt-4 text-center text-gray-600">
-        <a routerLink="/forgot-password" class="text-fuchsia-500 hover:underline">Forgot password?</a>
-      </div> -->
+      <!-- Sign Up Prompt -->
       <div class="mt-4 text-center text-gray-600">
         Don't have an account?
-        <a routerLink="/signup" class="text-fuchsia-500 font-semibold hover:underline">Sign up</a>
+        <a routerLink="/signup" class="text-fuchsia-500 font-semibold hover:underline cursor-pointer">Sign up</a>
       </div>
     </form>
   </div>
