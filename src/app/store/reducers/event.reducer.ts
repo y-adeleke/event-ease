@@ -13,7 +13,7 @@ export const initialState: EventState = {
   events: null,
   selectedEvent: null,
   loading: false,
-  error: null
+  error: null,
 };
 
 export const eventReducer = createReducer(
@@ -21,31 +21,31 @@ export const eventReducer = createReducer(
   on(EventActions.loadEvents, state => ({
     ...state,
     loading: true,
-    error: null
+    error: null,
   })),
   on(EventActions.loadEventsSuccess, (state, { events }) => ({
     ...state,
     events,
-    loading: false
+    loading: false,
   })),
   on(EventActions.loadEventsFailure, (state, { error }) => ({
     ...state,
     loading: false,
-    error
+    error,
   })),
   on(EventActions.loadEventById, state => ({
     ...state,
     loading: true,
-    error: null
+    error: null,
   })),
   on(EventActions.loadEventByIdSuccess, (state, { event }) => ({
     ...state,
     selectedEvent: event,
-    loading: false
+    loading: false,
   })),
   on(EventActions.loadEventByIdFailure, (state, { error }) => ({
     ...state,
     loading: false,
-    error
-  }))
+    error,
+  })),
 );

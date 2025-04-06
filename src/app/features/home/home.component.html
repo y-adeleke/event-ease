@@ -63,8 +63,10 @@
       <!-- Next Event and Countdown Timer -->
       <div *ngIf="nextEvent" class="mb-12">
         <h2 class="text-3xl font-bold mb-4">Next Event: {{ nextEvent.title }}</h2>
-        <p class="text-xl mb-8">{{ nextEvent.dateTime | date:'fullDate' }} at {{ nextEvent.dateTime | date:'shortTime' }}</p>
-        
+        <p class="text-xl mb-8">
+          {{ nextEvent.dateTime | date: "fullDate" }} at {{ nextEvent.dateTime | date: "shortTime" }}
+        </p>
+
         <!-- Countdown Timer -->
         <div class="flex justify-center gap-4 mb-8">
           <div class="timer-box">
@@ -146,7 +148,7 @@
             </div>
           </div>
 
-          <button 
+          <button
             class="nav-button next"
             [class.hidden]="currentSlide >= getMaxSlide()"
             (click)="nextSlide()"
@@ -179,10 +181,11 @@
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        <a *ngFor="let category of categories" 
-           [routerLink]="['/events']" 
-           [queryParams]="{category: category.name}"
-           class="category-card">
+        <a
+          *ngFor="let category of categories"
+          [routerLink]="['/events']"
+          [queryParams]="{ category: category.name }"
+          class="category-card">
           <div class="relative rounded-lg overflow-hidden aspect-square">
             <img [src]="category.image" [alt]="category.name" class="w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">

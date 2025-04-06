@@ -73,36 +73,36 @@ export const eventCategories: Category[] = [
     id: 1,
     name: "Music",
     image: "assets/images/categories/music.jpg",
-    count: 12
+    count: 12,
   },
   {
     id: 2,
     name: "Sports",
     image: "assets/images/categories/sports.jpg",
-    count: 8
+    count: 8,
   },
   {
     id: 3,
     name: "Art",
     image: "assets/images/categories/arts.jpg",
-    count: 15
+    count: 15,
   },
   {
     id: 4,
     name: "Food",
     image: "assets/images/categories/food.jpg",
-    count: 10
+    count: 10,
   },
   {
     id: 5,
     name: "Technology",
     image: "assets/images/categories/technology.jpg",
-    count: 6
+    count: 6,
   },
   {
     id: 6,
     name: "Business",
     image: "assets/images/categories/business.jpg",
-    count: 9
-  }
+    count: 9,
+  },
 ];

@@ -23,7 +23,7 @@ export class EventListComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
@@ -32,8 +32,8 @@ export class EventListComponent implements OnInit {
 
     // Subscribe to query params to get the category filter
     this.route.queryParams.subscribe(params => {
-      if (params['category']) {
-        this.filterCategory = params['category'];
+      if (params["category"]) {
+        this.filterCategory = params["category"];
       }
     });
   }

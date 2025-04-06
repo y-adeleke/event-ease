@@ -20,7 +20,7 @@ export const routes: Routes = [
   { path: "events/:id/purchase", component: TicketPurchaseComponent },
   { path: "payment/:id", component: PaymentComponent },
   { path: "confirmation/:id", component: ConfirmationComponent },
-  { path: "profile/create-event", component: CreateEventComponent, canActivate: [AuthGuard]},
+  { path: "profile/create-event", component: CreateEventComponent, canActivate: [AuthGuard] },
   {
     path: "profile",
     component: ProfileComponent,

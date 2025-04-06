@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.featuredEvents = dummyEvents
       .filter(event => event.dateTime.getTime() > now)
       .sort((a, b) => a.dateTime.getTime() - b.dateTime.getTime());
-    
+
     this.nextEvent = this.featuredEvents[0];
   }
 
@@ -142,9 +142,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // If the event has passed, find the next event
     if (distance < 0) {
-      const nextEvent = this.featuredEvents.find(
-        event => event.dateTime.getTime() > now
-      );
+      const nextEvent = this.featuredEvents.find(event => event.dateTime.getTime() > now);
       if (nextEvent) {
         this.nextEvent = nextEvent;
         this.updateCountdown(nextEvent.dateTime);
