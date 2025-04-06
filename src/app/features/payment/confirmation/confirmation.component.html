@@ -1,0 +1,58 @@
+<!-- Header -->
+<header class="bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white">
+  <nav class="container mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <a routerLink="/" routerLinkActive="text-fuchsia-300" [routerLinkActiveOptions]="{exact: true}" class="text-lg font-semibold">EventEase</a>
+        <a routerLink="/events" routerLinkActive="text-fuchsia-300" class="text-lg font-semibold">Events</a>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a routerLink="/login" class="text-lg font-semibold">Log In</a>
+        <a routerLink="/signup" class="text-lg font-semibold">Sign Up</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="container">
+  <div class="confirmation-card">
+    <div class="success-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+    
+    <h1 class="text-3xl font-bold mb-4">Thank You for Your Purchase!</h1>
+    <p class="text-gray-600 mb-8">Your tickets have been sent to {{ email }}</p>
+
+    <div class="order-details">
+      <ng-container *ngIf="event$ | async as event">
+        <div class="detail-row">
+          <span class="font-semibold">Event:</span>
+          <span>{{ event.title }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="font-semibold">Date & Time:</span>
+          <span>{{ event.dateTime | date:'medium' }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="font-semibold">Location:</span>
+          <span>{{ event.location }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="font-semibold">Number of Tickets:</span>
+          <span>{{ quantity }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="font-semibold">Total Amount:</span>
+          <span>${{ (event.price * quantity).toFixed(2) }}</span>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="action-buttons">
+      <a routerLink="/events" class="btn btn-secondary">Browse More Events</a>
+      <a routerLink="/" class="btn btn-primary">Return to Home</a>
+    </div>
+  </div>
+</main> 

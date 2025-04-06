@@ -8,18 +8,20 @@ import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { Store } from "@ngrx/store";
 import { loadEventById } from "../../../store/actions/event.actions";
-import { selectSelectedEvent } from "../../../store/selectors/event.selectors";
-import { RouterModule } from "@angular/router";
+import { selectEventById, selectEventLoading, selectEventError } from "../../../store/selectors/event.selectors";
+import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
   selector: "app-event-detail",
   standalone: true,
-  imports: [CommonModule, RouterModule, ButtonModule, CardModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive, ButtonModule, CardModule],
   templateUrl: "./event-detail.component.html",
   styleUrls: ["./event-detail.component.scss"],
 })
 export class EventDetailComponent implements OnInit {
-  event$!: Observable<Event | null>;
+  event$!: Observable<Event | undefined>;
+  loading$!: Observable<boolean>;
+  error$!: Observable<string | null>;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,7 +30,11 @@ export class EventDetailComponent implements OnInit {
 
   ngOnInit() {
     const eventId = Number(this.route.snapshot.paramMap.get("id"));
-    this.store.dispatch(loadEventById({ id: eventId }));
-    this.event$ = this.store.select(selectSelectedEvent);
+    if (eventId) {
+      this.store.dispatch(loadEventById({ id: eventId }));
+      this.event$ = this.store.select(selectEventById(eventId));
+      this.loading$ = this.store.select(selectEventLoading);
+      this.error$ = this.store.select(selectEventError);
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
+import { RouterModule, ActivatedRoute } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { Event } from "../../../core/models/event.model";
@@ -21,11 +21,21 @@ export class EventListComponent implements OnInit {
   filterCategory: string = "";
   filterLocation: string = "";
 
-  constructor(private store: Store) {}
+  constructor(
+    private store: Store,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.store.dispatch(loadEvents());
     this.events$ = this.store.select(selectAllEvents);
+
+    // Subscribe to query params to get the category filter
+    this.route.queryParams.subscribe(params => {
+      if (params['category']) {
+        this.filterCategory = params['category'];
+      }
+    });
   }
 
   filterEvent(event: Event): boolean {

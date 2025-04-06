@@ -1,0 +1,183 @@
+<!-- Header -->
+<header class="bg-gradient-to-r from-purple-900 to-fuchsia-900 text-white py-4 px-4 fixed w-full top-0 z-50">
+  <div class="container mx-auto">
+    <nav class="flex justify-between items-center">
+      <div class="flex items-center space-x-8">
+        <a routerLink="/" class="text-2xl font-bold text-white flex items-center">
+          <svg class="h-8 w-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          EventEase
+        </a>
+        <div class="space-x-6">
+          <a routerLink="/" routerLinkActive="text-fuchsia-300" [routerLinkActiveOptions]="{exact: true}" 
+             class="text-white hover:text-fuchsia-300 transition">Home</a>
+          <a routerLink="/events" routerLinkActive="text-fuchsia-300"
+             class="text-white hover:text-fuchsia-300 transition">Events</a>
+        </div>
+      </div>
+      <div class="space-x-4">
+        <a routerLink="/login" class="text-white hover:text-fuchsia-300 transition">Log In</a>
+        <a routerLink="/signup" class="bg-fuchsia-600 hover:bg-fuchsia-700 px-6 py-2 rounded-full transition">Sign Up</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="pt-20">
+  <div class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Event Details -->
+      <div class="bg-white rounded-xl shadow-lg p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Order Summary</h2>
+        <ng-container *ngIf="event$ | async as event">
+          <div class="flex items-center space-x-4 mb-6">
+            <img [src]="event.pictures[0]" [alt]="event.title" class="w-24 h-24 object-cover rounded-lg">
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800">{{ event.title }}</h3>
+              <p class="text-gray-600">{{ event.dateTime | date:'medium' }}</p>
+              <p class="text-gray-600">{{ event.location }}</p>
+            </div>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">Ticket Price</span>
+              <span class="font-semibold">${{ event.price }}</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-600">Quantity</span>
+              <span class="font-semibold">{{ quantity }}</span>
+            </div>
+            <div class="border-t pt-4">
+              <div class="flex justify-between items-center">
+                <span class="text-lg font-semibold">Total</span>
+                <span class="text-xl font-bold text-fuchsia-600">
+                  ${{ totalAmount.toFixed(2) }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Payment Form -->
+      <div class="max-w-4xl mx-auto p-6">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <h2 class="text-2xl font-bold mb-6">Payment Details</h2>
+          
+          <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="space-y-6">
+            <!-- Card Number -->
+            <div class="form-group">
+              <label for="cardNumber" class="block text-gray-700 font-medium mb-2">Card Number</label>
+              <input
+                id="cardNumber"
+                type="text"
+                formControlName="cardNumber"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
+                [class.border-red-500]="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched"
+                placeholder="1234 5678 9012 3456"
+                maxlength="16">
+              <div *ngIf="paymentForm.get('cardNumber')?.invalid && paymentForm.get('cardNumber')?.touched" 
+                   class="text-red-500 text-sm mt-1">
+                <span *ngIf="paymentForm.get('cardNumber')?.errors?.['required']">Card number is required</span>
+                <span *ngIf="paymentForm.get('cardNumber')?.errors?.['pattern']">Please enter a valid 16-digit card number</span>
+              </div>
+            </div>
+
+            <!-- Card Holder Name -->
+            <div class="form-group">
+              <label for="cardHolder" class="block text-gray-700 font-medium mb-2">Card Holder Name</label>
+              <input
+                id="cardHolder"
+                type="text"
+                formControlName="cardHolder"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
+                [class.border-red-500]="paymentForm.get('cardHolder')?.invalid && paymentForm.get('cardHolder')?.touched"
+                placeholder="John Doe">
+              <div *ngIf="paymentForm.get('cardHolder')?.invalid && paymentForm.get('cardHolder')?.touched" 
+                   class="text-red-500 text-sm mt-1">
+                <span *ngIf="paymentForm.get('cardHolder')?.errors?.['required']">Card holder name is required</span>
+                <span *ngIf="paymentForm.get('cardHolder')?.errors?.['pattern']">Please enter a valid name (letters and spaces only)</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <!-- Expiry Date -->
+              <div class="form-group">
+                <label for="expiryDate" class="block text-gray-700 font-medium mb-2">Expiry Date</label>
+                <input
+                  id="expiryDate"
+                  type="text"
+                  formControlName="expiryDate"
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
+                  [class.border-red-500]="paymentForm.get('expiryDate')?.invalid && paymentForm.get('expiryDate')?.touched"
+                  placeholder="MM/YY"
+                  maxlength="5">
+                <div *ngIf="paymentForm.get('expiryDate')?.invalid && paymentForm.get('expiryDate')?.touched" 
+                     class="text-red-500 text-sm mt-1">
+                  <span *ngIf="paymentForm.get('expiryDate')?.errors?.['required']">Expiry date is required</span>
+                  <span *ngIf="paymentForm.get('expiryDate')?.errors?.['pattern']">Please enter a valid date (MM/YY)</span>
+                  <span *ngIf="paymentForm.get('expiryDate')?.errors?.['expired']">Card has expired</span>
+                </div>
+              </div>
+
+              <!-- CVV -->
+              <div class="form-group">
+                <label for="cvv" class="block text-gray-700 font-medium mb-2">CVV</label>
+                <input
+                  id="cvv"
+                  type="text"
+                  formControlName="cvv"
+                  class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500"
+                  [class.border-red-500]="paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched"
+                  placeholder="123"
+                  maxlength="4">
+                <div *ngIf="paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched" 
+                     class="text-red-500 text-sm mt-1">
+                  <span *ngIf="paymentForm.get('cvv')?.errors?.['required']">CVV is required</span>
+                  <span *ngIf="paymentForm.get('cvv')?.errors?.['pattern']">Please enter a valid CVV (3-4 digits)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+              <h3 class="text-lg font-semibold mb-4">Order Summary</h3>
+              <ng-container *ngIf="event$ | async as event">
+                <div class="flex justify-between mb-2">
+                  <span>Event:</span>
+                  <span class="font-medium">{{ event.title }}</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                  <span>Tickets:</span>
+                  <span class="font-medium">{{ quantity }}</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                  <span>Price per ticket:</span>
+                  <span class="font-medium">${{ event.price.toFixed(2) }}</span>
+                </div>
+                <div class="flex justify-between text-lg font-bold mt-4 pt-4 border-t">
+                  <span>Total Amount:</span>
+                  <span class="text-fuchsia-600">${{ totalAmount.toFixed(2) }}</span>
+                </div>
+              </ng-container>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              [disabled]="paymentForm.invalid"
+              class="w-full bg-fuchsia-600 text-white py-3 rounded-lg font-semibold mt-6
+                     hover:bg-fuchsia-700 transition-colors duration-300
+                     disabled:bg-gray-400 disabled:cursor-not-allowed">
+              Complete Purchase
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main> 

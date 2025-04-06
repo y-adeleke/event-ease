@@ -60,31 +60,53 @@
       <h1 class="text-6xl font-bold mb-6">Find Your Next <span class="text-fuchsia-500">Experience</span></h1>
       <p class="text-2xl mb-12 max-w-2xl mx-auto">Discover and book amazing events happening around you.</p>
 
-      <!-- Countdown Timer -->
-      <div class="flex justify-center gap-4 mb-8">
-        <div class="timer-box">
-          <div class="text-4xl font-bold">{{ countdown.days }}</div>
-          <div class="text-sm">Days</div>
+      <!-- Next Event and Countdown Timer -->
+      <div *ngIf="nextEvent" class="mb-12">
+        <h2 class="text-3xl font-bold mb-4">Next Event: {{ nextEvent.title }}</h2>
+        <p class="text-xl mb-8">{{ nextEvent.dateTime | date:'fullDate' }} at {{ nextEvent.dateTime | date:'shortTime' }}</p>
+        
+        <!-- Countdown Timer -->
+        <div class="flex justify-center gap-4 mb-8">
+          <div class="timer-box">
+            <div class="text-4xl font-bold">{{ countdown.days }}</div>
+            <div class="text-sm">Days</div>
+          </div>
+          <div class="timer-box">
+            <div class="text-4xl font-bold">{{ countdown.hours }}</div>
+            <div class="text-sm">Hours</div>
+          </div>
+          <div class="timer-box">
+            <div class="text-4xl font-bold">{{ countdown.minutes }}</div>
+            <div class="text-sm">Minutes</div>
+          </div>
+          <div class="timer-box">
+            <div class="text-4xl font-bold">{{ countdown.seconds }}</div>
+            <div class="text-sm">Seconds</div>
+          </div>
         </div>
-        <div class="timer-box">
-          <div class="text-4xl font-bold">{{ countdown.hours }}</div>
-          <div class="text-sm">Hours</div>
-        </div>
-        <div class="timer-box">
-          <div class="text-4xl font-bold">{{ countdown.minutes }}</div>
-          <div class="text-sm">Minutes</div>
-        </div>
-        <div class="timer-box">
-          <div class="text-4xl font-bold">{{ countdown.seconds }}</div>
-          <div class="text-sm">Seconds</div>
+
+        <!-- Event Quick Info -->
+        <div class="flex justify-center items-center gap-6 mb-8">
+          <div class="flex items-center">
+            <i class="fas fa-map-marker-alt mr-2"></i>
+            <span>{{ nextEvent.location }}</span>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-ticket-alt mr-2"></i>
+            <span>{{ nextEvent.availableTickets }} tickets left</span>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-tag mr-2"></i>
+            <span>${{ nextEvent.price }}</span>
+          </div>
         </div>
       </div>
 
       <!-- CTA Button -->
       <a
-        routerLink="/events"
+        [routerLink]="['/events', nextEvent?.id]"
         class="inline-block bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all transform hover:scale-105">
-        Explore Events
+        Get Tickets Now
       </a>
     </div>
   </section>
@@ -124,9 +146,9 @@
             </div>
           </div>
 
-          <button
+          <button 
             class="nav-button next"
-            [class.hidden]="currentSlide >= maxSlide"
+            [class.hidden]="currentSlide >= getMaxSlide()"
             (click)="nextSlide()"
             aria-label="Next slide">
             <span class="arrow">&gt;</span>
@@ -157,7 +179,10 @@
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        <div *ngFor="let category of categories" class="category-card">
+        <a *ngFor="let category of categories" 
+           [routerLink]="['/events']" 
+           [queryParams]="{category: category.name}"
+           class="category-card">
           <div class="relative rounded-lg overflow-hidden aspect-square">
             <img [src]="category.image" [alt]="category.name" class="w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
@@ -167,7 +192,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </section>

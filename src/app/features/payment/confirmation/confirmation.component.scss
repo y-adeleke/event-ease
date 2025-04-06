@@ -1,0 +1,71 @@
+:host {
+  display: block;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.confirmation-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 2rem;
+  text-align: center;
+}
+
+.success-icon {
+  color: #10B981;
+  margin-bottom: 1.5rem;
+}
+
+.order-details {
+  background-color: #F9FAFB;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.btn-secondary {
+  background-color: #E5E7EB;
+  color: #374151;
+  
+  &:hover {
+    background-color: #D1D5DB;
+  }
+}
+
+.btn-primary {
+  background-color: #D946EF;
+  color: white;
+  
+  &:hover {
+    background-color: #C026D3;
+  }
+} 

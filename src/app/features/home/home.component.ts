@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, HostListener } from "@angular/core";
 import { Event } from "../../core/models/event.model";
-import { Observable } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { InputTextModule } from "primeng/inputtext";
@@ -8,7 +8,7 @@ import { FormsModule } from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { loadEvents } from "../../store/actions/event.actions";
 import { selectAllEvents } from "../../store/selectors/event.selectors";
-import { interval, Subscription } from "rxjs";
+import { interval } from "rxjs";
 import { dummyEvents, eventCategories, Category, featuredEventIds } from "../../store/dummy-data";
 
 interface CountdownTime {
@@ -41,98 +41,85 @@ export class HomeComponent implements OnInit, OnDestroy {
   currentSlide = 0;
   visibleSlides = 3; // Default for large screens
   private timerSubscription?: Subscription;
-  private carouselInterval?: any;
+  private events: Event[] = [];
 
-  featuredEvents: Event[] = dummyEvents.filter(event => featuredEventIds.includes(event.id));
+  featuredEvents: Event[] = [];
   categories: Category[] = eventCategories;
+  nextEvent: Event | undefined;
 
-  @HostListener("window:resize")
-  onResize() {
-    // Update visible slides based on window width
-    if (window.innerWidth < 640) {
-      // sm breakpoint
-      this.visibleSlides = 1;
-    } else if (window.innerWidth < 1024) {
-      // lg breakpoint
-      this.visibleSlides = 2;
-    } else {
-      this.visibleSlides = 3;
-    }
-    // Ensure current slide is valid after resize
-    this.currentSlide = Math.min(this.currentSlide, this.maxSlide);
+  constructor(private store: Store) {
+    // Find the next upcoming event
+    const now = new Date().getTime();
+    this.featuredEvents = dummyEvents
+      .filter(event => event.dateTime.getTime() > now)
+      .sort((a, b) => a.dateTime.getTime() - b.dateTime.getTime());
+    
+    this.nextEvent = this.featuredEvents[0];
   }
-
-  get maxSlide(): number {
-    return Math.max(0, Math.ceil(this.featuredEvents.length - this.visibleSlides));
-  }
-
-  constructor(private store: Store) {}
 
   ngOnInit() {
     this.store.dispatch(loadEvents());
     this.events$ = this.store.select(selectAllEvents);
+    this.events$.subscribe(events => {
+      this.events = events;
+    });
     this.startCountdown();
-    this.startCarouselAutoplay();
-    this.onResize(); // Set initial visible slides
+    this.setInitialVisibleSlides();
+    this.startCarousel();
   }
 
-  ngOnDestroy() {
-    if (this.timerSubscription) {
-      this.timerSubscription.unsubscribe();
-    }
-    if (this.carouselInterval) {
-      clearInterval(this.carouselInterval);
+  @HostListener("window:resize")
+  onResize() {
+    this.setInitialVisibleSlides();
+  }
+
+  private setInitialVisibleSlides() {
+    if (window.innerWidth < 640) {
+      this.visibleSlides = 1;
+    } else if (window.innerWidth < 1024) {
+      this.visibleSlides = 2;
+    } else {
+      this.visibleSlides = 3;
     }
   }
 
   private startCountdown() {
-    const targetDate = new Date("2024-12-31");
-
     this.timerSubscription = interval(1000).subscribe(() => {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
-
-      this.countdown = {
-        days: Math.floor(distance / (1000 * 60 * 60 * 24))
-          .toString()
-          .padStart(2, "0"),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-          .toString()
-          .padStart(2, "0"),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-          .toString()
-          .padStart(2, "0"),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000)
-          .toString()
-          .padStart(2, "0"),
-      };
+      if (this.nextEvent) {
+        this.updateCountdown(this.nextEvent.dateTime);
+      }
     });
   }
 
-  private startCarouselAutoplay() {
-    this.carouselInterval = setInterval(() => {
-      if (this.currentSlide < this.maxSlide) {
+  private startCarousel() {
+    this.timerSubscription = new Observable<number>(subscriber => {
+      let count = 0;
+      setInterval(() => {
+        subscriber.next(count++);
+      }, 5000);
+    }).subscribe(() => {
+      if (this.currentSlide < this.getMaxSlide()) {
         this.nextSlide();
       } else {
         this.currentSlide = 0;
       }
-    }, 5000);
+    });
   }
 
   nextSlide() {
-    if (this.currentSlide < this.maxSlide) {
-      this.currentSlide++;
-    }
+    this.currentSlide = Math.min(this.currentSlide + 1, this.getMaxSlide());
   }
 
   previousSlide() {
-    if (this.currentSlide > 0) {
-      this.currentSlide--;
-    }
+    this.currentSlide = Math.max(this.currentSlide - 1, 0);
   }
 
   goToSlide(index: number) {
-    this.currentSlide = Math.min(index, this.maxSlide);
+    this.currentSlide = index;
+  }
+
+  getMaxSlide(): number {
+    return Math.max(0, this.featuredEvents.length - this.visibleSlides);
   }
 
   filterEvent(event: Event): boolean {
@@ -140,5 +127,43 @@ export class HomeComponent implements OnInit, OnDestroy {
     const matchesCategory = event.category.toLowerCase().includes(this.filterCategory.toLowerCase());
     const matchesLocation = event.location.toLowerCase().includes(this.filterLocation.toLowerCase());
     return matchesName && matchesCategory && matchesLocation;
+  }
+
+  ngOnDestroy() {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+    }
+  }
+
+  private updateCountdown(eventDate: Date) {
+    const now = new Date().getTime();
+    const eventTime = eventDate.getTime();
+    const distance = eventTime - now;
+
+    // If the event has passed, find the next event
+    if (distance < 0) {
+      const nextEvent = this.featuredEvents.find(
+        event => event.dateTime.getTime() > now
+      );
+      if (nextEvent) {
+        this.nextEvent = nextEvent;
+        this.updateCountdown(nextEvent.dateTime);
+      }
+      return;
+    }
+
+    // Calculate time units
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Update countdown object
+    this.countdown = {
+      days: days.toString().padStart(2, "0"),
+      hours: hours.toString().padStart(2, "0"),
+      minutes: minutes.toString().padStart(2, "0"),
+      seconds: seconds.toString().padStart(2, "0"),
+    };
   }
 }

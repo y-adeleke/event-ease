@@ -1,0 +1,87 @@
+<div class="container mx-auto px-4 py-8" *ngIf="event$ | async as event">
+  <div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold mb-8">Purchase Tickets</h1>
+    
+    <!-- Event Summary -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+      <h2 class="text-2xl font-semibold mb-4">{{ event.title }}</h2>
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <p class="text-gray-600">Date & Time</p>
+          <p class="font-medium">{{ event.dateTime | date:'medium' }}</p>
+        </div>
+        <div>
+          <p class="text-gray-600">Location</p>
+          <p class="font-medium">{{ event.location }}</p>
+        </div>
+      </div>
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="text-gray-600">Price per ticket</p>
+          <p class="text-2xl font-bold text-fuchsia-600">${{ event.price }}</p>
+        </div>
+        <div>
+          <p class="text-gray-600">Available tickets</p>
+          <p class="font-medium">{{ event.availableTickets }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Purchase Form -->
+    <form [formGroup]="purchaseForm" (ngSubmit)="onSubmit()" class="bg-white rounded-lg shadow-md p-6">
+      <div class="mb-6">
+        <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+          [class.border-red-500]="purchaseForm.get('email')?.invalid && purchaseForm.get('email')?.touched">
+        <div *ngIf="purchaseForm.get('email')?.invalid && purchaseForm.get('email')?.touched" class="text-red-500 mt-1">
+          Please enter a valid email address
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <label for="quantity" class="block text-gray-700 font-medium mb-2">Number of Tickets</label>
+        <input
+          type="number"
+          id="quantity"
+          formControlName="quantity"
+          [min]="1"
+          [max]="maxTickets"
+          class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+          [class.border-red-500]="purchaseForm.get('quantity')?.invalid && purchaseForm.get('quantity')?.touched">
+        <div *ngIf="purchaseForm.get('quantity')?.invalid && purchaseForm.get('quantity')?.touched" class="text-red-500 mt-1">
+          Please enter a valid number of tickets (1-{{ maxTickets }})
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <label class="flex items-center">
+          <input
+            type="checkbox"
+            formControlName="agreeToTerms"
+            class="mr-2">
+          <span class="text-gray-700">I agree to the terms and conditions</span>
+        </label>
+        <div *ngIf="purchaseForm.get('agreeToTerms')?.invalid && purchaseForm.get('agreeToTerms')?.touched" class="text-red-500 mt-1">
+          You must agree to the terms and conditions
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="text-gray-600">Total Amount</p>
+          <p class="text-2xl font-bold text-fuchsia-600">${{ (purchaseForm.get('quantity')?.value || 0) * event.price }}</p>
+        </div>
+        <button
+          type="submit"
+          [disabled]="purchaseForm.invalid"
+          class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors disabled:bg-gray-400">
+          Proceed to Payment
+        </button>
+      </div>
+    </form>
+  </div>
+</div> 
