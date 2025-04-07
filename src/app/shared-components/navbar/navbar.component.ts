@@ -1,24 +1,24 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+import { Router, RouterModule } from "@angular/router";
 
 @Component({
-  selector: 'app-navbar',
+  selector: "app-navbar",
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  templateUrl: "./navbar.component.html",
+  styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   isLoggedIn(): boolean {
-    return !!sessionStorage.getItem('authToken');
+    return !!sessionStorage.getItem("authToken");
   }
 
   logout(): void {
-    sessionStorage.removeItem('authToken');
+    sessionStorage.removeItem("authToken");
     console.log("Signed out");
-    this.router.navigate(['/']);
+    this.router.navigate(["/"]);
   }
 }

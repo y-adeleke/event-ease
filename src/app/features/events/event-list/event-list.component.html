@@ -20,17 +20,26 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="relative">
           <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-          <input type="text" placeholder="Search by name" [(ngModel)]="filterName"
+          <input
+            type="text"
+            placeholder="Search by name"
+            [(ngModel)]="filterName"
             class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-200 transition-all outline-none" />
         </div>
         <div class="relative">
           <i class="fas fa-tag absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-          <input type="text" placeholder="Filter by category" [(ngModel)]="filterCategory"
+          <input
+            type="text"
+            placeholder="Filter by category"
+            [(ngModel)]="filterCategory"
             class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-200 transition-all outline-none" />
         </div>
         <div class="relative">
           <i class="fas fa-map-marker-alt absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-          <input type="text" placeholder="Filter by location" [(ngModel)]="filterLocation"
+          <input
+            type="text"
+            placeholder="Filter by location"
+            [(ngModel)]="filterLocation"
             class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-200 transition-all outline-none" />
         </div>
       </div>
@@ -42,7 +51,8 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <ng-container *ngIf="events$ | async as events">
         <ng-container *ngFor="let event of events">
-          <div *ngIf="filterEvent(event)"
+          <div
+            *ngIf="filterEvent(event)"
             class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
             <img [src]="event.pictures[0]" alt="{{ event.title }}" class="w-full h-48 object-cover" />
             <div class="p-6">
@@ -64,7 +74,8 @@
                   <i class="fas fa-ticket-alt mr-1"></i>
                   {{ event.availableTickets }} tickets left
                 </div>
-                <a [routerLink]="['/events', event.id]"
+                <a
+                  [routerLink]="['/events', event.id]"
                   class="inline-block bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-6 py-2 rounded-full transition-all duration-300">
                   View Details
                 </a>

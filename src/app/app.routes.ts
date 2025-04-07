@@ -8,12 +8,19 @@ import { EventDetailComponent } from "./features/events/detail/event-detail.comp
 import { CreateEventComponent } from "./features/events/create/create-event.component";
 import { ManageEventComponent } from "./features/events/manage/manage-event.component";
 import { EventListComponent } from "./features/events/event-list/event-list.component";
+import { TicketPurchaseComponent } from "./features/tickets/ticket-purchase/ticket-purchase.component";
+import { PaymentComponent } from "./features/payment/payment.component";
+import { ConfirmationComponent } from "./features/payment/confirmation/confirmation.component";
 
 export const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },
   { path: "events/:id", component: EventDetailComponent },
+  { path: "events/:id/purchase", component: TicketPurchaseComponent },
+  { path: "payment/:id", component: PaymentComponent },
+  { path: "confirmation/:id", component: ConfirmationComponent },
+
   { path: "profile/create-event", component: CreateEventComponent, canActivate: [AuthGuard] },
   {
     path: "profile",
