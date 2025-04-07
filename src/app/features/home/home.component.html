@@ -73,15 +73,21 @@
       <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Featured Events</h2>
       <div class="featured-events">
         <div class="carousel-container">
-          <button class="nav-button prev" [class.hidden]="currentSlide === 0" (click)="previousSlide()"
+          <button
+            class="nav-button prev"
+            [class.hidden]="currentSlide === 0"
+            (click)="previousSlide()"
             aria-label="Previous slide">
             <span class="arrow">&lt;</span>
           </button>
 
           <div class="carousel-wrapper">
-            <div class="carousel-track"
+            <div
+              class="carousel-track"
               [style.transform]="'translateX(-' + currentSlide * (100 / visibleSlides) + '%)'">
-              <div class="carousel-item" *ngFor="let event of featuredEvents; let i = index"
+              <div
+                class="carousel-item"
+                *ngFor="let event of featuredEvents; let i = index"
                 [style.flex]="'0 0 ' + 100 / visibleSlides + '%'">
                 <div class="event-card">
                   <img [src]="event.pictures[0]" [alt]="event.title" />
@@ -106,8 +112,10 @@
         </div>
 
         <div class="carousel-indicators">
-          <button *ngFor="let _ of featuredEvents; let i = index"
-            [class.active]="i >= currentSlide && i < currentSlide + visibleSlides" (click)="goToSlide(i)"
+          <button
+            *ngFor="let _ of featuredEvents; let i = index"
+            [class.active]="i >= currentSlide && i < currentSlide + visibleSlides"
+            (click)="goToSlide(i)"
             [attr.aria-label]="'Go to slide ' + (i + 1)"></button>
         </div>
       </div>
@@ -119,7 +127,8 @@
     <div class="container mx-auto px-4">
       <div class="flex justify-between items-center mb-8">
         <h2 class="text-3xl font-bold text-white">Event Categories</h2>
-        <a routerLink="/events"
+        <a
+          routerLink="/events"
           class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-6 py-2 rounded-full transition">
           View All Events
         </a>
@@ -151,7 +160,10 @@
       <div class="flex justify-between items-center mb-8">
         <h2 class="text-3xl font-bold text-gray-800">Latest Events</h2>
         <div class="flex gap-4">
-          <input type="text" [(ngModel)]="filterName" placeholder="Search events..."
+          <input
+            type="text"
+            [(ngModel)]="filterName"
+            placeholder="Search events..."
             class="px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:border-fuchsia-500" />
         </div>
       </div>
@@ -159,7 +171,8 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <ng-container *ngIf="events$ | async as events">
           <ng-container *ngFor="let event of events">
-            <div *ngIf="filterEvent(event)"
+            <div
+              *ngIf="filterEvent(event)"
               class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
               <img [src]="event.pictures[0]" alt="{{ event.title }}" class="w-full h-48 object-cover" />
               <div class="p-6">
@@ -169,7 +182,8 @@
                 </div>
                 <p class="text-fuchsia-600 mt-2">{{ event.category }} - {{ event.location }}</p>
                 <p class="mt-3 text-gray-600 line-clamp-2">{{ event.description }}</p>
-                <a [routerLink]="['/events', event.id]"
+                <a
+                  [routerLink]="['/events', event.id]"
                   class="inline-block mt-4 bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-6 py-2 rounded-full transition-all duration-300">
                   View Details
                 </a>
