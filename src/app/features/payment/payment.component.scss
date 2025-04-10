@@ -1,0 +1,49 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+// Form styles
+form {
+  .p-inputtext,
+  .p-dropdown,
+  .p-inputnumber {
+    width: 100%;
+  }
+
+  .p-dropdown {
+    .p-dropdown-label {
+      padding: 0.5rem;
+    }
+  }
+
+  .p-inputnumber {
+    .p-inputnumber-input {
+      width: 100%;
+    }
+  }
+}
+
+// Order summary styles
+.order-summary {
+  .event-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 1024px) {
+  .container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+} 
