@@ -79,7 +79,7 @@ export class ProfileComponent implements OnInit {
 }
   */
 
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators, ReactiveFormsModule } from "@angular/forms";
 import { UserService } from "../../core/services/user.service";
 import { CommonModule } from "@angular/common";
@@ -95,9 +95,7 @@ import { User } from "../../core/models/user.model";
   templateUrl: "./profile.component.html",
   styleUrls: ["./profile.component.scss"],
 })
-
-
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   profileForm = this.fb.group({
     firstName: ["", Validators.required],
     lastName: ["", Validators.required],
@@ -115,7 +113,7 @@ export class ProfileComponent {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const username = "user2"; // Replace with the actual username or fetch it dynamically
@@ -134,7 +132,7 @@ export class ProfileComponent {
         bankName: user.bankName,
         bankAccountNumber: user.bankAccountNumber,
         bankRoutingNumber: user.bankRoutingNumber,
-        bankCountry: user.bankCountry
+        bankCountry: user.bankCountry,
       });
     });
   }
@@ -154,5 +152,3 @@ export class ProfileComponent {
     }
   }
 }
-
-
