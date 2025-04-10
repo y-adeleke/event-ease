@@ -8,10 +8,14 @@
       <!-- First Name -->
       <div class="mb-4">
         <label for="firstName" class="block text-gray-700 font-semibold mb-1">First Name</label>
-        <input pInputText id="firstName" formControlName="firstName"
+        <input
+          pInputText
+          id="firstName"
+          formControlName="firstName"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Enter your first name" />
-        <div *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched"
+        <div
+          *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched"
           class="text-red-600 text-sm mt-1">
           First name is required and must be 2–30 alphabetic characters.
         </div>
@@ -20,10 +24,14 @@
       <!-- Last Name -->
       <div class="mb-4">
         <label for="lastName" class="block text-gray-700 font-semibold mb-1">Last Name</label>
-        <input pInputText id="lastName" formControlName="lastName"
+        <input
+          pInputText
+          id="lastName"
+          formControlName="lastName"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Enter your last name" />
-        <div *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched"
+        <div
+          *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched"
           class="text-red-600 text-sm mt-1">
           Last name is required and must be 2–30 alphabetic characters.
         </div>
@@ -32,10 +40,14 @@
       <!-- Phone -->
       <div class="mb-4">
         <label for="phone" class="block text-gray-700 font-semibold mb-1">Phone</label>
-        <input pInputText id="phone" formControlName="phone"
+        <input
+          pInputText
+          id="phone"
+          formControlName="phone"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="e.g. (123) 456-7890 or 123-456-7890" />
-        <div *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched"
+        <div
+          *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched"
           class="text-red-600 text-sm mt-1">
           Please enter a valid US or Canadian phone number.
         </div>
@@ -44,10 +56,14 @@
       <!-- Username -->
       <div class="mb-4">
         <label for="username" class="block text-gray-700 font-semibold mb-1">Username</label>
-        <input pInputText id="username" formControlName="username"
+        <input
+          pInputText
+          id="username"
+          formControlName="username"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Choose a username" />
-        <div *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched"
+        <div
+          *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched"
           class="text-red-600 text-sm mt-1">
           Username must be 3–20 characters, using only letters, numbers, dots, or underscores.
         </div>
@@ -56,10 +72,14 @@
       <!-- Password -->
       <div class="mb-4">
         <label for="password" class="block text-gray-700 font-semibold mb-1">Password</label>
-        <input pPassword id="password" formControlName="password"
+        <input
+          pPassword
+          id="password"
+          formControlName="password"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Create a password" />
-        <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched"
+        <div
+          *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched"
           class="text-red-600 text-sm mt-1">
           Password must be at least 8 characters and include uppercase, lowercase, number, and special character.
         </div>
@@ -68,10 +88,14 @@
       <!-- Email -->
       <div class="mb-4">
         <label for="email" class="block text-gray-700 font-semibold mb-1">Email</label>
-        <input pInputText id="email" formControlName="email"
+        <input
+          pInputText
+          id="email"
+          formControlName="email"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Enter your email address" />
-        <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched"
+        <div
+          *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched"
           class="text-red-600 text-sm mt-1">
           Please enter a valid email address.
         </div>
@@ -80,10 +104,14 @@
       <!-- Bank Account Number -->
       <div class="mb-4">
         <label for="bankAccountNumber" class="block text-gray-700 font-semibold mb-1">Bank Account Number</label>
-        <input pInputText id="bankAccountNumber" formControlName="bankAccountNumber"
+        <input
+          pInputText
+          id="bankAccountNumber"
+          formControlName="bankAccountNumber"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Enter your bank account number" />
-        <div *ngIf="signupForm.get('bankAccountNumber')?.invalid && signupForm.get('bankAccountNumber')?.touched"
+        <div
+          *ngIf="signupForm.get('bankAccountNumber')?.invalid && signupForm.get('bankAccountNumber')?.touched"
           class="text-red-600 text-sm mt-1">
           Bank account number must be 8 to 20 digits.
         </div>
@@ -92,10 +120,14 @@
       <!-- Bank Routing Number -->
       <div class="mb-4">
         <label for="bankRoutingNumber" class="block text-gray-700 font-semibold mb-1">Bank Routing Number</label>
-        <input pInputText id="bankRoutingNumber" formControlName="bankRoutingNumber"
+        <input
+          pInputText
+          id="bankRoutingNumber"
+          formControlName="bankRoutingNumber"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Enter your bank routing number" />
-        <div *ngIf="signupForm.get('bankRoutingNumber')?.invalid && signupForm.get('bankRoutingNumber')?.touched"
+        <div
+          *ngIf="signupForm.get('bankRoutingNumber')?.invalid && signupForm.get('bankRoutingNumber')?.touched"
           class="text-red-600 text-sm mt-1">
           Routing number must be exactly 9 digits.
         </div>
@@ -104,12 +136,15 @@
       <!-- Bank Name -->
       <div class="mb-4">
         <label for="bankName" class="block text-gray-700 font-semibold mb-1">Bank Name</label>
-        <select id="bankName" formControlName="bankName"
+        <select
+          id="bankName"
+          formControlName="bankName"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
           <option value="">Select a bank</option>
           <option *ngFor="let bank of bankNames" [value]="bank">{{ bank }}</option>
         </select>
-        <div *ngIf="signupForm.get('bankName')?.invalid && signupForm.get('bankName')?.touched"
+        <div
+          *ngIf="signupForm.get('bankName')?.invalid && signupForm.get('bankName')?.touched"
           class="text-red-600 text-sm mt-1">
           Bank name is required.
         </div>
@@ -118,19 +153,25 @@
       <!-- Bank Country -->
       <div class="mb-4">
         <label for="bankCountry" class="block text-gray-700 font-semibold mb-1">Bank Country</label>
-        <select id="bankCountry" formControlName="bankCountry"
+        <select
+          id="bankCountry"
+          formControlName="bankCountry"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
           <option value="">Select a country</option>
           <option *ngFor="let country of bankCountries" [value]="country">{{ country }}</option>
         </select>
-        <div *ngIf="signupForm.get('bankCountry')?.invalid && signupForm.get('bankCountry')?.touched"
+        <div
+          *ngIf="signupForm.get('bankCountry')?.invalid && signupForm.get('bankCountry')?.touched"
           class="text-red-600 text-sm mt-1">
           Bank country is required.
         </div>
       </div>
 
       <!-- Sign-Up Button -->
-      <button pButton type="submit" [disabled]="signupForm.invalid"
+      <button
+        pButton
+        type="submit"
+        [disabled]="signupForm.invalid"
         class="w-full flex justify-center bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold py-3 rounded-lg transition-all">
         Sign Up
       </button>

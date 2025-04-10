@@ -22,15 +22,17 @@ export const routes: Routes = [
   { path: "confirmation/:id", component: ConfirmationComponent },
 
   { path: "profile/create-event", component: CreateEventComponent, canActivate: [AuthGuard] },
-  {
-    path: "profile",
-    component: ProfileComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: "manage-events", component: ManageEventComponent },
-      { path: "", redirectTo: "manage-events", pathMatch: "full" },
-    ],
-  },
+  { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: "profile/manage-events", component: ManageEventComponent, canActivate: [AuthGuard] },
+  // {
+  //   path: "profile",
+  //   component: ProfileComponent,
+  //   canActivate: [AuthGuard],
+  //   children: [
+  //     { path: "manage-events", component: ManageEventComponent },
+  //     { path: "", redirectTo: "manage-events", pathMatch: "full" },
+  //   ],
+  // },
   { path: "events", component: EventListComponent },
   { path: "**", redirectTo: "" },
 ];

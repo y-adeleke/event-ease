@@ -5,4 +5,10 @@ export interface User {
   phone: string;
   username: string;
   password: string;
+
+  email: string;
+  bankName: string;
+  bankAccountNumber: string;
+  bankRoutingNumber: string;
+  bankCountry: string;
 }
