@@ -34,6 +34,15 @@
       <a routerLink="/events" routerLinkActive="text-fuchsia-300" class="text-white hover:text-fuchsia-300 transition"
         >Events</a
       >
+      <!-- ✅ Show only if logged in -->
+      <ng-container *ngIf="isLoggedIn()">
+        <a
+          routerLink="/profile/create-event"
+          routerLinkActive="text-fuchsia-300"
+          class="text-white hover:text-fuchsia-300 transition"
+          >Create Event</a
+        >
+      </ng-container>
     </div>
   </div>
   <div class="space-x-4">
