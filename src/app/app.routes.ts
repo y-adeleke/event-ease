@@ -15,6 +15,7 @@ export const routes: Routes = [
   { path: "signup", component: SignupComponent },
   { path: "events/:id", component: EventDetailComponent },
   { path: "profile/create-event", component: CreateEventComponent, canActivate: [AuthGuard] },
+  { path: "profile/manage-events", component: ManageEventComponent, canActivate: [AuthGuard] },
   {
     path: "profile",
     component: ProfileComponent,

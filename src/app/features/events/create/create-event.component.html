@@ -1,76 +1,20 @@
-<!-- A common Navbar can be added for all the pages -->
-<!-- <header class="bg-gradient-to-r from-purple-900 to-fuchsia-900 text-white py-4 px-4 fixed w-full top-0 z-50">
+<!-- Add Navbar -->
+<header class="bg-gradient-to-r from-purple-900 to-fuchsia-900 text-white py-4 px-4 fixed w-full top-0 z-50">
   <div class="container mx-auto">
-    <nav class="flex justify-between items-center">
-      <div class="flex items-center space-x-8">
-        <a routerLink="/" class="text-2xl font-bold text-white flex items-center">
-          <svg class="h-8 w-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M12 2L2 7L12 12L22 7L12 2Z"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path
-              d="M2 17L12 22L22 17"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path
-              d="M2 12L12 17L22 12"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-          EventEase
-        </a>
-        <div class="space-x-6">
-          <a
-            routerLink="/profile"
-            routerLinkActive="text-fuchsia-300"
-            routerLinkActiveOptions="{ exact: true }"
-            class="text-white hover:text-fuchsia-300 transition"
-            >Profile</a
-          >
-          <a
-            routerLink="/events"
-            routerLinkActive="text-fuchsia-300"
-            class="text-white hover:text-fuchsia-300 transition"
-            >Events</a
-          >
-          <a
-            routerLink="/profile/create-event"
-            routerLinkActive="text-fuchsia-300"
-            class="text-white hover:text-fuchsia-300 transition"
-            >Create Events</a
-          >
-          <a
-            routerLink="/profile/manage-event"
-            routerLinkActive="text-fuchsia-300"
-            class="text-white hover:text-fuchsia-300 transition"
-            >Manage Events</a
-          >
-        </div>
-      </div>
-      <div class="space-x-4">
-        <a routerLink="/" class="text-white hover:text-fuchsia-300 transition">Log Out</a>
-      </div>
-    </nav>
+    <app-navbar></app-navbar>
   </div>
-</header> -->
+</header>
 
-<div class="container mx-auto p-6 bg-white shadow-lg rounded-lg max-w-2xl mt-16">
-  <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Create Event</h1>
+<!-- Form Container -->
+<div class="container mx-auto p-6 bg-white shadow-lg rounded-lg max-w-3xl mt-32 mb-16">
+  <h1 class="text-4xl font-bold text-gray-800 mb-10 text-center">Create Event</h1>
 
-  <form [formGroup]="createEventForm" (ngSubmit)="onCreate()" class="space-y-4">
+  <form [formGroup]="createEventForm" (ngSubmit)="onCreate()" class="space-y-6">
+    
     <!-- Title -->
     <div>
-      <label class="block font-semibold mb-1 text-gray-700">Title</label>
-      <input
-        pInputText
-        formControlName="title"
+      <label class="block font-semibold mb-2 text-gray-700">Title</label>
+      <input pInputText formControlName="title"
         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
         placeholder="Enter event title" />
       <div *ngIf="createEventForm.controls.title.invalid && submitted" class="text-red-500 text-sm mt-1">
@@ -80,11 +24,10 @@
 
     <!-- Description -->
     <div>
-      <label class="block font-semibold mb-1 text-gray-700">Description</label>
-      <textarea
-        formControlName="description"
+      <label class="block font-semibold mb-2 text-gray-700">Description</label>
+      <textarea formControlName="description"
         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
-        placeholder="Write a brief description"></textarea>
+        placeholder="Write a brief description" rows="4"></textarea>
       <div *ngIf="createEventForm.controls.description.invalid && submitted" class="text-red-500 text-sm mt-1">
         Event description is required.
       </div>
@@ -93,92 +36,87 @@
     <!-- Category -->
     <div>
       <label class="block font-semibold mb-2 text-gray-700">Category</label>
-      <p-dropdown
-        [options]="categories"
-        formControlName="category"
-        placeholder="Select a category"
-        class="p-4 border rounded">
-      </p-dropdown>
-    </div>
-
-    <div class="grid grid-cols-2 gap-20">
-      <!-- Date Field -->
-      <div>
-        <label class="block font-semibold mb-4 text-gray-700">Date</label>
-        <p-calendar
-          formControlName="date"
-          [showOnFocus]="true"
-          [touchUI]="true"
-          dateFormat="dd-mm-yy"
-          placeholder="DD-MM-YYYY"
-          class="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
-        </p-calendar>
-      </div>
-
-      <!-- Time Field -->
-      <div>
-        <label class="block font-semibold mb-4 text-gray-700">Time</label>
-        <p-calendar
-          formControlName="time"
-          [timeOnly]="true"
-          [showOnFocus]="true"
-          [touchUI]="true"
-          placeholder="HH:MM AM/PM"
-          class="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
-        </p-calendar>
+      <div class="w-full">
+        <p-dropdown
+          [options]="categories"
+          formControlName="category"
+          placeholder="Select a category"
+          [style]="{ width: '100%' }"
+          class="p-dropdown-rounded border-gray-300">
+        </p-dropdown>
       </div>
     </div>
+    
+    <!-- DateTime Field -->
+    <div>
+      <label class="block font-semibold mb-4 text-gray-700">Date & Time</label>
+      <p-calendar
+        formControlName="dateTime"
+        [showIcon]="true"
+        [showTime]="true"
+        [hourFormat]="'12'"
+        [minDate]="minDate"
+        dateFormat="mm/dd/yy"
+        [style]="{ width: '96%' }"
+        class="w-full border border-gray-300 rounded-md p-inputtext"
+        placeholder="Select date and time">
+      </p-calendar>
+    </div>
+
     <!-- Location -->
     <div>
-      <label class="block font-semibold mb-1 text-gray-700">Location</label>
-      <input
-        pInputText
-        formControlName="location"
+      <label class="block font-semibold mb-2 text-gray-700">Location</label>
+      <input pInputText formControlName="location"
         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
         placeholder="Enter location" />
-      <div *ngIf="createEventForm.controls.location.invalid && submitted" class="text-red-500 text-sm mt-1">
-        Event location is required.
-      </div>
     </div>
+
     <!-- Total Tickets -->
     <div>
-      <label class="block font-semibold mb-1 text-gray-700">Total Tickets</label>
-      <input
-        pInputText
-        type="number"
-        formControlName="totalTickets"
+      <label class="block font-semibold mb-2 text-gray-700">Total Tickets</label>
+      <input pInputText type="number" formControlName="totalTickets"
         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
-        placeholder="Number of tickets"
         min="1" />
     </div>
 
     <!-- Price per Ticket -->
     <div>
-      <label class="block font-semibold mb-1 text-gray-700">Price per Ticket</label>
-      <input
-        pInputText
-        type="number"
-        formControlName="price"
+      <label class="block font-semibold mb-2 text-gray-700">Price per Ticket</label>
+      <input pInputText type="number" formControlName="pricePerTicket"
         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
-        placeholder="Price per ticket"
         min="1" />
     </div>
 
-    <!-- Event Pictures (URL) -->
-    <div>
-      <label class="block font-semibold mb-1 text-gray-700">Event Pictures (URL)</label>
-      <input
-        pInputText
-        formControlName="pictures"
-        class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
-        placeholder="Enter an image URL" />
+    <!-- Drag & Drop Upload -->
+    <label class="block font-semibold text-gray-700">Event Image</label>
+    <div
+      class="w-full border-dashed border-2 border-fuchsia-500 bg-gray-50 p-6 rounded text-center hover:bg-gray-100 transition-all duration-300"
+      (drop)="onFileDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
+      <p class="text-gray-600 mb-3">Drag and drop an image here or click to select</p>
+      <input type="file" (change)="onFileSelect($event)" class="hidden" #fileInput />
+      
+      <!-- Styled Browse Button -->
+      <button
+        type="button"
+        (click)="fileInput.click()"
+        class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-4 py-2 rounded-full text-sm transition">
+        Browse Image
+      </button>
+
+      <!-- Image Preview -->
+      <div *ngIf="imagePreview" class="mt-5">
+        <img [src]="imagePreview" alt="Preview" class="w-40 h-40 object-cover rounded mx-auto shadow" />
+      </div>
     </div>
 
     <!-- Submit Button -->
-    <button
-      pButton
-      type="submit"
-      label="Create Event"
-      class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-4 py-2 rounded-lg transition"></button>
+    <div class="text-center">
+      <button
+        pButton
+        type="submit"
+        label="Create Event"
+        class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-6 py-3 rounded-full text-lg transition-all shadow-lg hover:shadow-xl">
+      </button>
+    </div>
   </form>
 </div>
