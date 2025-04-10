@@ -7,17 +7,24 @@ import { ButtonModule } from "primeng/button";
 import { Router } from "@angular/router";
 import { EventService } from "../../../core/services/event.service";
 import { MemberService } from "../../../core/services/member.service";
-import { NavbarComponent } from "../../../shared-components/navbar/navbar.component"; 
-import { CalendarModule } from 'primeng/calendar';
+import { NavbarComponent } from "../../../shared-components/navbar/navbar.component";
+import { CalendarModule } from "primeng/calendar";
 
 @Component({
   selector: "app-create-event",
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DropdownModule, InputTextModule, ButtonModule, NavbarComponent, CalendarModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    DropdownModule,
+    InputTextModule,
+    ButtonModule,
+    NavbarComponent,
+    CalendarModule,
+  ],
   templateUrl: "./create-event.component.html",
   styleUrls: ["./create-event.component.scss"],
 })
-
 export class CreateEventComponent implements OnInit {
   submitted = false;
   selectedFile: File | null = null;
@@ -48,7 +55,7 @@ export class CreateEventComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private eventService: EventService,
-    private memberService: MemberService
+    private memberService: MemberService,
   ) {
     this.minDate = new Date();
     this.minDate.setHours(0, 0, 0, 0); // ensures only dates starting today and forward are valid
@@ -66,10 +73,10 @@ export class CreateEventComponent implements OnInit {
     const username = decoded?.sub;
     if (username) {
       this.memberService.getMemberByUsername(username).subscribe({
-        next: (res) => {
+        next: res => {
           this.memberId = res?.id?.toString() || res?.memberId?.toString();
         },
-        error: (err) => {
+        error: err => {
           console.error("❌ Failed to retrieve member ID", err);
         },
       });
@@ -114,7 +121,7 @@ export class CreateEventComponent implements OnInit {
         alert("🎉 Event created!");
         this.router.navigate(["/profile/manage-events"]);
       },
-      error: (err) => {
+      error: err => {
         console.error("❌ Event creation failed", err);
         alert("Event creation failed. Please try again.");
       },

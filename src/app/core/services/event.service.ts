@@ -17,7 +17,7 @@ export class EventService {
     });
     return this.http.post<void>(this.apiUrl, formData, { headers });
   }
-  
+
   getEvents(): Observable<Event[]> {
     return of(dummyEvents);
   }
@@ -26,6 +26,4 @@ export class EventService {
     const event = dummyEvents.find(e => e.id === id);
     return of(event);
   }
-
 }
-

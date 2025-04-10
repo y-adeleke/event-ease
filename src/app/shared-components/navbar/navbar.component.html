@@ -1,39 +1,61 @@
 <nav class="flex justify-between items-center">
-    <div class="flex items-center space-x-8">
-        <a routerLink="/" class="text-2xl font-bold text-white flex items-center">
-            <svg class="h-8 w-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
-            EventEase
-        </a>
-        <div class="space-x-6">
-            <a routerLink="/" routerLinkActive="text-fuchsia-300" [routerLinkActiveOptions]="{ exact: true }"
-                class="text-white hover:text-fuchsia-300 transition">Home</a>
-            <a routerLink="/events" routerLinkActive="text-fuchsia-300"
-                class="text-white hover:text-fuchsia-300 transition">Events</a>
-                      <!-- ✅ Show only if logged in -->
-            <ng-container *ngIf="isLoggedIn()">
-                <a routerLink="/profile/create-event" routerLinkActive="text-fuchsia-300"
-                class="text-white hover:text-fuchsia-300 transition">Create Event</a>
-            </ng-container>
-        </div>
+  <div class="flex items-center space-x-8">
+    <a routerLink="/" class="text-2xl font-bold text-white flex items-center">
+      <svg class="h-8 w-8 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M12 2L2 7L12 12L22 7L12 2Z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round" />
+        <path
+          d="M2 17L12 22L22 17"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round" />
+        <path
+          d="M2 12L12 17L22 12"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+      EventEase
+    </a>
+    <div class="space-x-6">
+      <a
+        routerLink="/"
+        routerLinkActive="text-fuchsia-300"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-white hover:text-fuchsia-300 transition"
+        >Home</a
+      >
+      <a routerLink="/events" routerLinkActive="text-fuchsia-300" class="text-white hover:text-fuchsia-300 transition"
+        >Events</a
+      >
+      <!-- ✅ Show only if logged in -->
+      <ng-container *ngIf="isLoggedIn()">
+        <a
+          routerLink="/profile/create-event"
+          routerLinkActive="text-fuchsia-300"
+          class="text-white hover:text-fuchsia-300 transition"
+          >Create Event</a
+        >
+      </ng-container>
     </div>
-    <div class="space-x-4">
-        <ng-container *ngIf="isLoggedIn(); else guestLinks">
-            <button (click)="logout()"
-                class="bg-fuchsia-600 hover:bg-fuchsia-700 px-6 py-2 rounded-full transition-all text-white leading-none">
-                Sign Out
-            </button>
-        </ng-container>
-        <ng-template #guestLinks>
-            <a routerLink="/login" class="text-white hover:text-fuchsia-300 transition">Log In</a>
-            <a routerLink="/signup" class="bg-fuchsia-600 hover:bg-fuchsia-700 px-6 py-2 rounded-full transition">Sign
-                Up</a>
-        </ng-template>
-    </div>
+  </div>
+  <div class="space-x-4">
+    <ng-container *ngIf="isLoggedIn(); else guestLinks">
+      <button
+        (click)="logout()"
+        class="bg-fuchsia-600 hover:bg-fuchsia-700 px-6 py-2 rounded-full transition-all text-white leading-none">
+        Sign Out
+      </button>
+    </ng-container>
+    <ng-template #guestLinks>
+      <a routerLink="/login" class="text-white hover:text-fuchsia-300 transition">Log In</a>
+      <a routerLink="/signup" class="bg-fuchsia-600 hover:bg-fuchsia-700 px-6 py-2 rounded-full transition">Sign Up</a>
+    </ng-template>
+  </div>
 </nav>
