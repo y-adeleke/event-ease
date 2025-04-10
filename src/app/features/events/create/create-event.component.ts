@@ -31,6 +31,7 @@ export class CreateEventComponent implements OnInit {
   imagePreview: string | ArrayBuffer | null = null;
   memberId: string | null = null;
   minDate: Date;
+  isLoading = true;
 
   categories = [
     { label: "Technology", value: "Technology" },
@@ -64,23 +65,28 @@ export class CreateEventComponent implements OnInit {
   ngOnInit(): void {
     const token = sessionStorage.getItem("authToken");
     if (!token) {
-      alert("You must be logged in to create an event.");
       this.router.navigate(["/login"]);
       return;
     }
-
+  
     const decoded = this.decodeToken(token);
-    const username = decoded?.sub;
-    if (username) {
-      this.memberService.getMemberByUsername(username).subscribe({
-        next: res => {
-          this.memberId = res?.id?.toString() || res?.memberId?.toString();
-        },
-        error: err => {
-          console.error("❌ Failed to retrieve member ID", err);
-        },
-      });
+    if (!decoded?.sub) {
+      console.error("Token missing username/sub claim");
+      this.router.navigate(["/login"]);
+      return;
     }
+  
+    this.memberService.getMemberByUsername(decoded.sub).subscribe({
+      next: (res) => {
+        this.memberId = res?.id || res?.memberId;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error("Member fetch failed", err);
+        this.isLoading = false;
+        alert("Failed to load user data. Please refresh.");
+      }
+    });
   }
 
   onCreate(): void {
