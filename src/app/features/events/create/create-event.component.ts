@@ -68,24 +68,24 @@ export class CreateEventComponent implements OnInit {
       this.router.navigate(["/login"]);
       return;
     }
-  
+
     const decoded = this.decodeToken(token);
     if (!decoded?.sub) {
       console.error("Token missing username/sub claim");
       this.router.navigate(["/login"]);
       return;
     }
-  
+
     this.memberService.getMemberByUsername(decoded.sub).subscribe({
-      next: (res) => {
+      next: res => {
         this.memberId = res?.id || res?.memberId;
         this.isLoading = false;
       },
-      error: (err) => {
+      error: err => {
         console.error("Member fetch failed", err);
         this.isLoading = false;
         alert("Failed to load user data. Please refresh.");
-      }
+      },
     });
   }
 

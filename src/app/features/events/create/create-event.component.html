@@ -129,7 +129,9 @@
         type="submit"
         label="Create Event"
         class="bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-6 py-3 rounded-full text-lg transition-all shadow-lg hover:shadow-xl"
-        [disabled]="isLoading || createEventForm.invalid">{{ isLoading ? 'Loading...' : 'Create Event' }}</button>
+        [disabled]="isLoading || createEventForm.invalid">
+        {{ isLoading ? "Loading..." : "Create Event" }}
+      </button>
     </div>
   </form>
 </div>
