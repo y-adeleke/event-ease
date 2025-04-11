@@ -37,8 +37,11 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private memberService: MemberService,
-    private router: Router
+    private router: Router,
   ) {}
+
+  // Add a private variable to store the full user object
+  private currentUser!: User;
 
   ngOnInit(): void {
     const token = sessionStorage.getItem("authToken");
@@ -55,7 +58,7 @@ export class ProfileComponent implements OnInit {
     }
 
     // Log the decoded token to verify the username
-  console.log("Decoded token:", decoded);
+    console.log("Decoded token:", decoded);
 
     // Fetch user profile using the username (decoded sub)
     this.loadUserProfile(decoded.sub);
@@ -64,6 +67,8 @@ export class ProfileComponent implements OnInit {
   // Fetch the user profile and populate the form
   loadUserProfile(username: string): void {
     this.userService.getProfile(username).subscribe((user: User) => {
+      this.currentUser = user; // store full user including id
+
       this.profileForm.patchValue({
         firstName: user.firstName,
         lastName: user.lastName,
@@ -95,25 +100,52 @@ export class ProfileComponent implements OnInit {
 
   onUpdate() {
     if (this.profileForm.valid) {
-      const token = sessionStorage.getItem("authToken") || "";
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-      });
-
-      this.userService.updateProfile(this.profileForm.value as User).subscribe(() => {
-        // Handle profile update success (e.g., show a success message)
+      const formValue = this.profileForm.value;
+  
+      const updatedUser: User = {
+        id: this.currentUser.id,
+        username: formValue.username ?? '',
+        firstName: formValue.firstName ?? '',
+        lastName: formValue.lastName ?? '',
+        email: formValue.email ?? '',
+        phone: formValue.phone ?? '',
+        bankName: formValue.bankName ?? '',
+        bankAccountNumber: formValue.bankAccountNumber ?? '',
+        bankRoutingNumber: formValue.bankRoutingNumber ?? '',
+        bankCountry: formValue.bankCountry ?? '',
+        password: this.currentUser.password, // or empty string if not required
+      };
+  
+      this.userService.updateProfile(updatedUser).subscribe(() => {
         alert("Profile updated successfully!");
-        this.isEditable = false; // Disable editing after update
+        this.isEditable = false;
       });
     }
   }
+  
+  
+
+  // onUpdate() {
+  //   if (this.profileForm.valid) {
+  //     const token = sessionStorage.getItem("authToken") || "";
+  //     const headers = new HttpHeaders({
+  //       Authorization: `Bearer ${token}`,
+  //     });
+
+  //     this.userService.updateProfile(this.profileForm.value as User).subscribe(() => {
+  //       // Handle profile update success (e.g., show a success message)
+  //       alert("Profile updated successfully!");
+  //       this.isEditable = false; // Disable editing after update
+  //     });
+  //   }
+  // }
 
   // Custom decodeToken method
   decodeToken(token: string): any {
     try {
       const payload = token.split(".")[1];
       const decoded = JSON.parse(atob(payload));
-  
+
       // Check for expiration (assuming the token has an exp claim)
       const expirationTime = decoded?.exp;
       if (expirationTime && Date.now() / 1000 > expirationTime) {
@@ -122,14 +154,14 @@ export class ProfileComponent implements OnInit {
         this.router.navigate(["/login"]);
         return null;
       }
-  
+
       return decoded;
     } catch (err) {
       console.error("❌ Invalid token", err);
       return null;
     }
   }
-}  
+}
 
 /*
 //working code with hardcoded username

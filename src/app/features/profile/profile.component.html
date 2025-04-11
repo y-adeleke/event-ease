@@ -1,5 +1,4 @@
 
-
 <div class="flex justify-center items-center min-h-screen bg-gradient-to-r from-purple-900 to-fuchsia-900">
   <div class="w-full max-w-2xl p-8 bg-white rounded-2xl shadow-lg">
     <!-- Header -->
@@ -121,6 +120,7 @@
         type="submit"
         [disabled]="!isEditable || !profileForm.valid"
         label="Update Profile"
+        (click)="onUpdate()"
         class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold py-3 rounded-lg transition-all"></button>
 
       <!-- Edit Profile Button -->

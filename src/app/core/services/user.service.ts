@@ -12,32 +12,32 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-//   // GET /api/members/{username}
-//   getProfile(username: string): Observable<User> {
-//     return this.http.get<User>(`${this.apiUrl}/${username}`);
-//   }
+  //   // GET /api/members/{username}
+  //   getProfile(username: string): Observable<User> {
+  //     return this.http.get<User>(`${this.apiUrl}/${username}`);
+  //   }
 
-//   // PUT /api/members
-//   updateProfile(user: User): Observable<void> {
-//     return this.http.put<void>(this.apiUrl, user);
-//   }
-// }
+  //   // PUT /api/members
+  //   updateProfile(user: User): Observable<void> {
+  //     return this.http.put<void>(this.apiUrl, user);
+  //   }
+  // }
 
-// GET /api/members/{username}
-getProfile(username: string): Observable<User> {
-  const token = sessionStorage.getItem("authToken") || "";
-  const headers = new HttpHeaders({
-    Authorization: `Bearer ${token}`,
-  });
-  return this.http.get<User>(`${this.apiUrl}/${username}`, { headers });
-}
+  // GET /api/members/{username}
+  getProfile(username: string): Observable<User> {
+    const token = sessionStorage.getItem("authToken") || "";
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<User>(`${this.apiUrl}/${username}`, { headers });
+  }
 
-// PUT /api/members
-updateProfile(user: User): Observable<void> {
-  const token = sessionStorage.getItem("authToken") || "";
-  const headers = new HttpHeaders({
-    Authorization: `Bearer ${token}`,
-  });
-  return this.http.put<void>(this.apiUrl, user, { headers });
-}
+  // PUT /api/members
+  updateProfile(user: User): Observable<User> {
+    const token = sessionStorage.getItem("authToken") || "";
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.put<User>(this.apiUrl, user, { headers });
+  }
 }

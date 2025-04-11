@@ -23,7 +23,7 @@ export const routes: Routes = [
 
   { path: "profile/create-event", component: CreateEventComponent, canActivate: [AuthGuard] },
   { path: "profile/manage-events", component: ManageEventComponent, canActivate: [AuthGuard] },
-  { path : "profile", component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   {
     path: "profile",
     component: ProfileComponent,
