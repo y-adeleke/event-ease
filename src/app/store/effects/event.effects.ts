@@ -39,7 +39,7 @@ export class EventEffects {
           map(dto => loadEventByIdSuccess({ event: this.mapEventDtoToEvent(dto) })),
           catchError(error => {
             console.error("Error loading event by ID", error);
-            return of({ type: "[Event API] Load Event Failed" });
+            return of(loadEventByIdFailure({ error }));
           }),
         ),
       ),
