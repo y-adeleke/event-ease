@@ -24,7 +24,7 @@ export class EventEffects {
           ),
           catchError(error => {
             console.error("Error loading events", error);
-            return of({ type: "[Event API] Load Events Failed" });
+            return of(loadEventsFailure({ error }));
           }),
         ),
       ),
