@@ -22,6 +22,8 @@ export const routes: Routes = [
   { path: "confirmation/:id", component: ConfirmationComponent },
 
   { path: "profile/create-event", component: CreateEventComponent, canActivate: [AuthGuard] },
+  { path: "profile/manage-events", component: ManageEventComponent, canActivate: [AuthGuard] },
+  { path : "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   {
     path: "profile",
     component: ProfileComponent,

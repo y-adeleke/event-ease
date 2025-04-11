@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: "events/:id/purchase", component: TicketPurchaseComponent },
   { path: "payment/:id", component: PaymentComponent },
   { path: "**", redirectTo: "" },
+  
 ];
 
 @NgModule({
