@@ -9,7 +9,7 @@ import { Store } from "@ngrx/store";
 import { loadEvents } from "../../store/actions/event.actions";
 import { selectAllEvents } from "../../store/selectors/event.selectors";
 import { interval } from "rxjs";
-import { dummyEvents, eventCategories, Category, featuredEventIds } from "../../store/dummy-data";
+import { eventCategories, Category, featuredEventIds } from "../../store/dummy-data";
 import { NavbarComponent } from "../../shared-components/navbar/navbar.component";
 
 interface CountdownTime {
@@ -48,21 +48,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   categories: Category[] = eventCategories;
   nextEvent: Event | undefined;
 
-  constructor(private store: Store) {
-    // Find the next upcoming event
-    const now = new Date().getTime();
-    this.featuredEvents = dummyEvents
-      .filter(event => event.dateTime.getTime() > now)
-      .sort((a, b) => a.dateTime.getTime() - b.dateTime.getTime());
-
-    this.nextEvent = this.featuredEvents[0];
-  }
+  constructor(private store: Store) {}
 
   ngOnInit() {
     this.store.dispatch(loadEvents());
     this.events$ = this.store.select(selectAllEvents);
     this.events$.subscribe(events => {
       this.events = events;
+      const now = new Date().getTime();
+      this.featuredEvents = this.events
+        .filter(event => event.dateTime.getTime() > now)
+        .sort((a, b) => a.dateTime.getTime() - b.dateTime.getTime());
+      this.nextEvent = this.featuredEvents[0];
     });
     this.startCountdown();
     this.setInitialVisibleSlides();
