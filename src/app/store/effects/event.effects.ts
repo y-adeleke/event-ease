@@ -56,7 +56,7 @@ export class EventEffects {
       location: dto.location,
       availableTickets: dto.ticketsLeft,
       price: dto.pricePerTicket,
-      pictures: [dto.imagePath || "assets/images/angular_conf.jpg"],
+      pictures: [`assets/images/events/${dto.category.toLowerCase()}.jpg`],
     };
   }
 

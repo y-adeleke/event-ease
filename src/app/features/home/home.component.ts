@@ -11,6 +11,7 @@ import { selectAllEvents } from "../../store/selectors/event.selectors";
 import { interval } from "rxjs";
 import { eventCategories, Category, featuredEventIds } from "../../store/dummy-data";
 import { NavbarComponent } from "../../shared-components/navbar/navbar.component";
+import { EventImageService } from "../../core/services/event-image.service";
 
 interface CountdownTime {
   days: string;
@@ -48,7 +49,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   categories: Category[] = eventCategories;
   nextEvent: Event | undefined;
 
-  constructor(private store: Store) {}
+  constructor(
+    private store: Store,
+    private eventImageService: EventImageService
+  ) {}
 
   ngOnInit() {
     this.store.dispatch(loadEvents());
@@ -161,5 +165,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       minutes: minutes.toString().padStart(2, "0"),
       seconds: seconds.toString().padStart(2, "0"),
     };
+  }
+
+  getEventImage(event: Event): string {
+    return this.eventImageService.getCategoryImage(event.category);
+  }
+
+  getCategoryImage(category: string): string {
+    return this.eventImageService.getCategoryImage(category);
   }
 }
