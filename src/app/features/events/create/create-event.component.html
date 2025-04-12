@@ -16,10 +16,7 @@
       <!-- Title -->
       <div class="form-group">
         <label>Title</label>
-        <input
-          pInputText
-          formControlName="title"
-          placeholder="Enter event title" />
+        <input pInputText formControlName="title" placeholder="Enter event title" />
         <div *ngIf="createEventForm.controls.title.invalid && submitted" class="error-message">
           Event title is required.
         </div>
@@ -28,10 +25,7 @@
       <!-- Description -->
       <div class="form-group">
         <label>Description</label>
-        <textarea
-          formControlName="description"
-          placeholder="Write a brief description"
-          rows="4"></textarea>
+        <textarea formControlName="description" placeholder="Write a brief description" rows="4"></textarea>
         <div *ngIf="createEventForm.controls.description.invalid && submitted" class="error-message">
           Event description is required.
         </div>
@@ -65,30 +59,19 @@
       <!-- Location -->
       <div class="form-group">
         <label>Location</label>
-        <input
-          pInputText
-          formControlName="location"
-          placeholder="Enter location" />
+        <input pInputText formControlName="location" placeholder="Enter location" />
       </div>
 
       <!-- Total Tickets -->
       <div class="form-group">
         <label>Total Tickets</label>
-        <input
-          pInputText
-          type="number"
-          formControlName="totalTickets"
-          min="1" />
+        <input pInputText type="number" formControlName="totalTickets" min="1" />
       </div>
 
       <!-- Price per Ticket -->
       <div class="form-group">
         <label>Price per Ticket</label>
-        <input
-          pInputText
-          type="number"
-          formControlName="pricePerTicket"
-          min="1" />
+        <input pInputText type="number" formControlName="pricePerTicket" min="1" />
       </div>
 
       <!-- Drag & Drop Upload -->
@@ -101,12 +84,7 @@
           (dragleave)="onDragLeave($event)">
           <p>Drag and drop an image here or click to select</p>
           <input type="file" (change)="onFileSelect($event)" class="hidden" #fileInput />
-          <button
-            type="button"
-            (click)="fileInput.click()"
-            class="browse-button">
-            Browse Image
-          </button>
+          <button type="button" (click)="fileInput.click()" class="browse-button">Browse Image</button>
           <div *ngIf="imagePreview" class="image-preview">
             <img [src]="imagePreview" alt="Preview" />
           </div>

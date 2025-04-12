@@ -16,15 +16,14 @@
 
     <!-- Events Table -->
     <div class="events-table-container">
-      <p-table 
-        [value]="(events$ | async) || []" 
+      <p-table
+        [value]="(events$ | async) || []"
         class="events-table"
-        [paginator]="true" 
+        [paginator]="true"
         [rows]="10"
         [showCurrentPageReport]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} events"
         [rowsPerPageOptions]="[10, 25, 50]">
-        
         <ng-template pTemplate="header">
           <tr>
             <th class="title-column">Title</th>
@@ -51,9 +50,7 @@
               <div class="empty-state">
                 <i class="fas fa-calendar-plus"></i>
                 <p>No events created yet</p>
-                <a routerLink="/profile/create-event" class="create-event-link">
-                  Create your first event
-                </a>
+                <a routerLink="/profile/create-event" class="create-event-link"> Create your first event </a>
               </div>
             </td>
           </tr>

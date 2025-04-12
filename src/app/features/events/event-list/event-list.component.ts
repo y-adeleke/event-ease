@@ -27,7 +27,7 @@ export class EventListComponent implements OnInit {
     private store: Store,
     private route: ActivatedRoute,
     private router: Router,
-    private eventImageService: EventImageService
+    private eventImageService: EventImageService,
   ) {}
 
   ngOnInit() {
@@ -51,8 +51,9 @@ export class EventListComponent implements OnInit {
 
   filterEvent(event: Event): boolean {
     const matchesName = event.title.toLowerCase().includes(this.filterName.toLowerCase());
-    const matchesCategory = this.filterCategory ? 
-      event.category.toLowerCase().includes(this.filterCategory.toLowerCase()) : true;
+    const matchesCategory = this.filterCategory
+      ? event.category.toLowerCase().includes(this.filterCategory.toLowerCase())
+      : true;
     const matchesLocation = event.location.toLowerCase().includes(this.filterLocation.toLowerCase());
     return matchesName && matchesCategory && matchesLocation;
   }

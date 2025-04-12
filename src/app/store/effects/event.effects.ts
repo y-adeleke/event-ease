@@ -1,6 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { loadEvents, loadEventsSuccess, loadEventById, loadEventByIdSuccess, loadEventByIdFailure, loadEventsFailure } from "../actions/event.actions";
+import {
+  loadEvents,
+  loadEventsSuccess,
+  loadEventById,
+  loadEventByIdSuccess,
+  loadEventByIdFailure,
+  loadEventsFailure,
+} from "../actions/event.actions";
 import { dummyEvents } from "../dummy-data";
 import { catchError, map, mergeMap, of } from "rxjs";
 import { EventService } from "../../core/services/event.service";

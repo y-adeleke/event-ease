@@ -10,7 +10,7 @@
         <p>Create your account to start managing events</p>
       </div>
     </div>
-    
+
     <div class="signup-form">
       <div class="form-header">
         <h2>Create Account</h2>
@@ -31,10 +31,11 @@
                   id="firstName"
                   class="form-input"
                   formControlName="firstName"
-                  placeholder="Enter your first name"
-                />
+                  placeholder="Enter your first name" />
               </div>
-              <div *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched" class="error-message">
+              <div
+                *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched"
+                class="error-message">
                 First name is required and must be 2–30 alphabetic characters.
               </div>
             </div>
@@ -48,10 +49,11 @@
                   id="lastName"
                   class="form-input"
                   formControlName="lastName"
-                  placeholder="Enter your last name"
-                />
+                  placeholder="Enter your last name" />
               </div>
-              <div *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched" class="error-message">
+              <div
+                *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched"
+                class="error-message">
                 Last name is required and must be 2–30 alphabetic characters.
               </div>
             </div>
@@ -65,8 +67,7 @@
                   id="phone"
                   class="form-input"
                   formControlName="phone"
-                  placeholder="e.g. (123) 456-7890"
-                />
+                  placeholder="e.g. (123) 456-7890" />
               </div>
               <div *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched" class="error-message">
                 Please enter a valid US or Canadian phone number.
@@ -86,10 +87,11 @@
                   id="username"
                   class="form-input"
                   formControlName="username"
-                  placeholder="Choose a username"
-                />
+                  placeholder="Choose a username" />
               </div>
-              <div *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched" class="error-message">
+              <div
+                *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched"
+                class="error-message">
                 Username must be 3–20 characters, using only letters, numbers, dots, or underscores.
               </div>
             </div>
@@ -103,10 +105,11 @@
                   id="password"
                   class="form-input"
                   formControlName="password"
-                  placeholder="Create a password"
-                />
+                  placeholder="Create a password" />
               </div>
-              <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="error-message">
+              <div
+                *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched"
+                class="error-message">
                 Password must be at least 8 characters and include uppercase, lowercase, number, and special character.
               </div>
             </div>
@@ -120,8 +123,7 @@
                   id="email"
                   class="form-input"
                   formControlName="email"
-                  placeholder="Enter your email address"
-                />
+                  placeholder="Enter your email address" />
               </div>
               <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="error-message">
                 Please enter a valid email address.
@@ -141,10 +143,11 @@
                   id="bankAccountNumber"
                   class="form-input"
                   formControlName="bankAccountNumber"
-                  placeholder="Enter your bank account number"
-                />
+                  placeholder="Enter your bank account number" />
               </div>
-              <div *ngIf="signupForm.get('bankAccountNumber')?.invalid && signupForm.get('bankAccountNumber')?.touched" class="error-message">
+              <div
+                *ngIf="signupForm.get('bankAccountNumber')?.invalid && signupForm.get('bankAccountNumber')?.touched"
+                class="error-message">
                 Bank account number must be at least 15 digits long
               </div>
             </div>
@@ -158,10 +161,11 @@
                   id="bankRoutingNumber"
                   class="form-input"
                   formControlName="bankRoutingNumber"
-                  placeholder="Enter your bank routing number"
-                />
+                  placeholder="Enter your bank routing number" />
               </div>
-              <div *ngIf="signupForm.get('bankRoutingNumber')?.invalid && signupForm.get('bankRoutingNumber')?.touched" class="error-message">
+              <div
+                *ngIf="signupForm.get('bankRoutingNumber')?.invalid && signupForm.get('bankRoutingNumber')?.touched"
+                class="error-message">
                 Routing number must be exactly 9 digits.
               </div>
             </div>
@@ -170,15 +174,14 @@
               <label for="bankName" class="form-label">Bank Name</label>
               <div class="input-group">
                 <i class="input-icon fas fa-landmark"></i>
-                <select
-                  id="bankName"
-                  class="form-input"
-                  formControlName="bankName">
+                <select id="bankName" class="form-input" formControlName="bankName">
                   <option value="">Select a bank</option>
                   <option *ngFor="let bank of bankNames" [value]="bank">{{ bank }}</option>
                 </select>
               </div>
-              <div *ngIf="signupForm.get('bankName')?.invalid && signupForm.get('bankName')?.touched" class="error-message">
+              <div
+                *ngIf="signupForm.get('bankName')?.invalid && signupForm.get('bankName')?.touched"
+                class="error-message">
                 Bank name is required.
               </div>
             </div>
@@ -187,15 +190,14 @@
               <label for="bankCountry" class="form-label">Bank Country</label>
               <div class="input-group">
                 <i class="input-icon fas fa-globe"></i>
-                <select
-                  id="bankCountry"
-                  class="form-input"
-                  formControlName="bankCountry">
+                <select id="bankCountry" class="form-input" formControlName="bankCountry">
                   <option value="">Select a country</option>
                   <option *ngFor="let country of bankCountries" [value]="country">{{ country }}</option>
                 </select>
               </div>
-              <div *ngIf="signupForm.get('bankCountry')?.invalid && signupForm.get('bankCountry')?.touched" class="error-message">
+              <div
+                *ngIf="signupForm.get('bankCountry')?.invalid && signupForm.get('bankCountry')?.touched"
+                class="error-message">
                 Bank country is required.
               </div>
             </div>

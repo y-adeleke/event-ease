@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store,
-    private eventImageService: EventImageService
+    private eventImageService: EventImageService,
   ) {}
 
   ngOnInit() {

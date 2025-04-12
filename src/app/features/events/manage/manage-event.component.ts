@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { NavbarComponent } from '../../../shared-components/navbar/navbar.component';
+import { NavbarComponent } from "../../../shared-components/navbar/navbar.component";
 import { TableModule } from "primeng/table";
 import { ButtonModule } from "primeng/button";
 import { Observable } from "rxjs";

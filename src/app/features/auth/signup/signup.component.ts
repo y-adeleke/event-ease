@@ -75,7 +75,7 @@ export class SignupComponent {
         next: () => {
           console.log("Signup successful!");
           this.router.navigate(["/login"], {
-            queryParams: { signupSuccess: true }
+            queryParams: { signupSuccess: true },
           });
         },
         error: err => {

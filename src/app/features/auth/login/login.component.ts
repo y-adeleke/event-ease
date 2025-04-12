@@ -10,21 +10,14 @@ import { ButtonModule } from "primeng/button";
 @Component({
   selector: "app-login",
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    PasswordModule,
-    ButtonModule,
-    RouterModule
-  ],
+  imports: [CommonModule, ReactiveFormsModule, InputTextModule, PasswordModule, ButtonModule, RouterModule],
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent {
   loginForm = this.fb.group({
     username: ["", Validators.required],
-    password: ["", Validators.required]
+    password: ["", Validators.required],
   });
 
   constructor(
