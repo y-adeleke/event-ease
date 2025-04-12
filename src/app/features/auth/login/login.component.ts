@@ -35,6 +35,10 @@ export class LoginComponent {
         next: token => {
           console.log("Login successful!");
           console.log("Received token:", token);
+
+          // Save username to localStorage
+          localStorage.setItem("username", username);
+
           this.router.navigate(["/events"]);
         },
         error: error => {

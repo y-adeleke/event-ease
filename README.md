@@ -2,6 +2,14 @@
 
 # event-ease
 
+## 🚀 Quick Setup
+
+To get the app up and running locally:
+
+```bash
+npm install
+npm run start
+
 # angular 17 setup including eslint, prettier, and jest for tests
 
 # AngularBase
@@ -33,3 +41,4 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 > > > > > > > ca09ae0 (basic angular setup including prettier, eslint, and jest))
+```

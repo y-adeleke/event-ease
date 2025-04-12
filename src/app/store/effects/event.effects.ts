@@ -5,8 +5,10 @@ import {
   loadEventsSuccess,
   loadEventById,
   loadEventByIdSuccess,
+  loadEventsByUsername,
+  loadEventsByUsernameSuccess,
   loadEventByIdFailure,
-  loadEventsFailure,
+  loadEventsFailure
 } from "../actions/event.actions";
 import { dummyEvents } from "../dummy-data";
 import { catchError, map, mergeMap, of } from "rxjs";
@@ -47,6 +49,25 @@ export class EventEffects {
           catchError(error => {
             console.error("Error loading event by ID", error);
             return of(loadEventByIdFailure({ error }));
+          }),
+        ),
+      ),
+    ),
+  );
+
+  loadEventsByUsername$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loadEventsByUsername),
+      mergeMap(action =>
+        this.eventService.getEventsByUsername(action.username).pipe(
+          map(response =>
+            loadEventsByUsernameSuccess({
+              events: response.content.map((dto: any) => this.mapEventDtoToEvent(dto)),
+            }),
+          ),
+          catchError(error => {
+            console.error("Error loading events by username", error);
+            return of({ type: "[Event API] Load Events Failed" });
           }),
         ),
       ),

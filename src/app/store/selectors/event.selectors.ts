@@ -12,3 +12,7 @@ export const selectEventById = (id: number) =>
 export const selectEventLoading = createSelector(selectEventState, (state: EventState) => state.loading);
 
 export const selectEventError = createSelector(selectEventState, (state: EventState) => state.error);
+
+export const selectUserEvents = createSelector(selectEventState, (state: EventState) => state.userEvents || []);
+export const selectUserEventsLoading = createSelector(selectEventState, (state: EventState) => state.loading);
+export const selectUserEventsError = createSelector(selectEventState, (state: EventState) => state.error);
