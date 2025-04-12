@@ -10,3 +10,14 @@ export const loadEventsFailure = createAction("[Event] Load Events Failure", pro
 export const loadEventById = createAction("[Event] Load Event By Id", props<{ id: number }>());
 export const loadEventByIdSuccess = createAction("[Event] Load Event By Id Success", props<{ event: Event }>());
 export const loadEventByIdFailure = createAction("[Event] Load Event By Id Failure", props<{ error: string }>());
+
+//action to load events by username
+export const loadEventsByUsername = createAction("[Event] Load Events By Username", props<{ username: string }>());
+export const loadEventsByUsernameSuccess = createAction(
+  "[Event] Load Events By Username Success",
+  props<{ events: Event[] }>(),
+);
+export const loadEventsByUsernameFailure = createAction(
+  "[Event] Load Events By Username Failure",
+  props<{ error: string }>(),
+);

@@ -5,6 +5,7 @@ import * as EventActions from "../actions/event.actions";
 export interface EventState {
   events: Event[] | null;
   selectedEvent: Event | null;
+  userEvents: Event[] | null;
   loading: boolean;
   error: string | null;
 }
@@ -12,6 +13,7 @@ export interface EventState {
 export const initialState: EventState = {
   events: null,
   selectedEvent: null,
+  userEvents: null,
   loading: false,
   error: null,
 };
@@ -44,6 +46,21 @@ export const eventReducer = createReducer(
     loading: false,
   })),
   on(EventActions.loadEventByIdFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
+  })),
+  on(EventActions.loadEventsByUsername, state => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+  on(EventActions.loadEventsByUsernameSuccess, (state, { events }) => ({
+    ...state,
+    userEvents: events,
+    loading: false,
+  })),
+  on(EventActions.loadEventsByUsernameFailure, (state, { error }) => ({
     ...state,
     loading: false,
     error,

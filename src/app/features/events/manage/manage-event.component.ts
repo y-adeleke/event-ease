@@ -5,8 +5,8 @@ import { CommonModule } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { ButtonModule } from "primeng/button";
 import { Store } from "@ngrx/store";
-import { loadEvents } from "../../../store/actions/event.actions";
-import { selectAllEvents } from "../../../store/selectors/event.selectors";
+import { loadEvents, loadEventsByUsername } from "../../../store/actions/event.actions";
+import { selectAllEvents, selectUserEvents } from "../../../store/selectors/event.selectors";
 
 @Component({
   selector: "app-manage-event",
@@ -21,7 +21,8 @@ export class ManageEventComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit() {
-    this.store.dispatch(loadEvents());
-    this.events$ = this.store.select(selectAllEvents);
+    const savedUsername = localStorage.getItem("username");
+    loadEventsByUsername({ username: savedUsername || "" });
+    this.events$ = this.store.select(selectUserEvents);
   }
 }

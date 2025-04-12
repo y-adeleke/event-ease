@@ -35,6 +35,8 @@ export class LoginComponent {
           console.log("Received token:", token);
 
           sessionStorage.setItem("authToken", token);
+          // Save username to localStorage
+          localStorage.setItem("username", username);
 
           this.router.navigate(["/"]);
         },

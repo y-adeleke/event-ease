@@ -1,6 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { loadEvents, loadEventsSuccess, loadEventById, loadEventByIdSuccess } from "../actions/event.actions";
+import {
+  loadEvents,
+  loadEventsSuccess,
+  loadEventById,
+  loadEventByIdSuccess,
+  loadEventsByUsername,
+  loadEventsByUsernameSuccess,
+} from "../actions/event.actions";
 import { dummyEvents } from "../dummy-data";
 import { catchError, map, mergeMap, of } from "rxjs";
 import { EventService } from "../../core/services/event.service";
@@ -40,6 +47,25 @@ export class EventEffects {
           catchError(error => {
             console.error("Error loading event by ID", error);
             return of({ type: "[Event API] Load Event Failed" });
+          }),
+        ),
+      ),
+    ),
+  );
+
+  loadEventsByUsername$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loadEventsByUsername),
+      mergeMap(action =>
+        this.eventService.getEventsByUsername(action.username).pipe(
+          map(response =>
+            loadEventsByUsernameSuccess({
+              events: response.content.map((dto: any) => this.mapEventDtoToEvent(dto)),
+            }),
+          ),
+          catchError(error => {
+            console.error("Error loading events by username", error);
+            return of({ type: "[Event API] Load Events Failed" });
           }),
         ),
       ),
