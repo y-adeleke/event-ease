@@ -33,9 +33,6 @@ export class LoginComponent {
         next: token => {
           console.log("Login successful!");
           console.log("Received token:", token);
-
-          sessionStorage.setItem("authToken", token);
-
           this.router.navigate(["/"]);
         },
         error: error => {

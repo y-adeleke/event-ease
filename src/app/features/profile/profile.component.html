@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="flex justify-center items-center min-h-screen bg-gradient-to-r from-purple-900 to-fuchsia-900">
   <div class="w-full max-w-2xl p-8 bg-white rounded-2xl shadow-lg">
     <!-- Header -->
@@ -12,6 +13,7 @@
           pInputText
           id="firstName"
           formControlName="firstName"
+          [readonly]="!isEditable"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Enter your first name" />
       </div>
@@ -23,6 +25,7 @@
           pInputText
           id="lastName"
           formControlName="lastName"
+          [readonly]="!isEditable"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Enter your last name" />
       </div>
@@ -34,6 +37,7 @@
           pInputText
           id="email"
           formControlName="email"
+          [readonly]="!isEditable"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Enter your email" />
       </div>
@@ -45,6 +49,7 @@
           pInputText
           id="phone"
           formControlName="phone"
+          [readonly]="!isEditable"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Enter your phone number" />
       </div>
@@ -56,16 +61,76 @@
           pInputText
           id="username"
           formControlName="username"
+          [readonly]="!isEditable"
           class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
           placeholder="Choose a username" />
+      </div>
+
+      <!-- Bank Name -->
+      <div class="mb-4">
+        <label for="bankName" class="block text-gray-700 font-semibold mb-1">Bank Name</label>
+        <input
+          pInputText
+          id="bankName"
+          formControlName="bankName"
+          [readonly]="!isEditable"
+          class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+          placeholder="Enter your bank name" />
+      </div>
+
+      <!-- Bank Account Number -->
+      <div class="mb-4">
+        <label for="bankAccountNumber" class="block text-gray-700 font-semibold mb-1">Bank Account Number</label>
+        <input
+          pInputText
+          id="bankAccountNumber"
+          formControlName="bankAccountNumber"
+          [readonly]="!isEditable"
+          class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+          placeholder="Enter your bank account number" />
+      </div>
+
+      <!-- Bank Routing Number -->
+      <div class="mb-4">
+        <label for="bankRoutingNumber" class="block text-gray-700 font-semibold mb-1">Bank Routing Number</label>
+        <input
+          pInputText
+          id="bankRoutingNumber"
+          formControlName="bankRoutingNumber"
+          [readonly]="!isEditable"
+          class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+          placeholder="Enter your bank routing number" />
+      </div>
+
+      <!-- Bank Country -->
+      <div class="mb-4">
+        <label for="bankCountry" class="block text-gray-700 font-semibold mb-1">Bank Country</label>
+        <input
+          pInputText
+          id="bankCountry"
+          formControlName="bankCountry"
+          [readonly]="!isEditable"
+          class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-fuchsia-500"
+          placeholder="Enter your bank country" />
       </div>
 
       <!-- Update Profile Button -->
       <button
         pButton
         type="submit"
+        [disabled]="!isEditable || !profileForm.valid"
         label="Update Profile"
+        (click)="onUpdate()"
         class="w-full bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-semibold py-3 rounded-lg transition-all"></button>
+
+      <!-- Edit Profile Button -->
+      <button
+        pButton
+        type="button"
+        [disabled]="isEditable"
+        label="Edit Profile"
+        (click)="onEdit()"
+        class="mt-4 w-full bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition-all"></button>
     </form>
 
     <!-- Action Links -->
