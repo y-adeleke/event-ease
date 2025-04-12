@@ -1,6 +1,15 @@
 <<<<<<< HEAD
 
-# event-ease
+# EventEase
+
+## 🛠️ Technologies Used
+
+### Frontend
+- **Angular 17**: Modern web framework
+- **NgRx**: State management
+- **PrimeNG**: UI component library
+- **RxJS**: Reactive programming
+- **TypeScript**: Type-safe JavaScript
 
 ## 🚀 Quick Setup
 
