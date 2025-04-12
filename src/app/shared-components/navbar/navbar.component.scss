@@ -1,0 +1,13 @@
+nav {
+  background: linear-gradient(135deg, #6b46c1 0%, #d946ef 100%);
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 64px;
+  display: flex;
+  align-items: center;
+}

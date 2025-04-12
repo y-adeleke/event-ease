@@ -13,3 +13,329 @@ button {
 .pi {
     font-size: 1.2rem;
 }
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.5;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(217, 70, 239, 0.1) 0%, transparent 70%);
+    transform: rotate(30deg);
+  }
+}
+
+.login-card {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.login-image {
+  flex: 1;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+
+    i {
+      font-size: 2.5rem;
+      color: #e879f9;
+    }
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #4c1d95, #e879f9);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+}
+
+.login-form {
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 2rem;
+      background: linear-gradient(to right, #4c1d95, #e879f9);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(to right, #4c1d95, #e879f9);
+        border-radius: 2px;
+      }
+    }
+
+    p {
+      color: #666;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .input-group {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .input-icon {
+        position: absolute;
+        left: 1rem;
+        color: #666;
+        transition: color 0.3s ease;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 1rem 1rem 1rem 2.5rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: #d946ef;
+          box-shadow: 0 0 0 3px rgba(217, 70, 239, 0.1);
+
+          ~ .input-icon {
+            color: #d946ef;
+          }
+        }
+      }
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .login-button {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #4c1d95 0%, #e879f9 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(217, 70, 239, 0.2);
+
+      &::before {
+        width: 300%;
+        height: 300%;
+      }
+    }
+
+    &:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  .signup-prompt, .browse-events-prompt {
+    margin-top: 1rem;
+    text-align: center;
+    color: #666;
+
+    p {
+      margin: 0;
+      padding: 0;
+      
+      a {
+        display: inline-block;
+        color: #d946ef;
+        text-decoration: none;
+        font-weight: 500;
+        cursor: pointer !important;
+        padding: 0.25rem 0.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 10;
+
+        &:hover {
+          text-decoration: underline;
+          color: #4c1d95;
+        }
+      }
+    }
+  }
+
+  .browse-events-prompt {
+    margin-top: 0.5rem;
+    
+    a {
+      color: #6b7280 !important;
+      font-size: 0.9rem;
+      
+      &:hover {
+        color: #4c1d95 !important;
+      }
+    }
+  }
+}
+
+.divider {
+  margin: 1rem 0;
+  text-align: center;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: calc(50% - 30px);
+    height: 1px;
+    background-color: #e5e7eb;
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+
+  span {
+    background-color: white;
+    padding: 0 1rem;
+    color: #6b7280;
+    font-size: 0.9rem;
+    text-transform: lowercase;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-card {
+    flex-direction: column;
+  }
+
+  .login-image {
+    padding: 2rem 1rem;
+    min-height: 200px;
+
+    .logo {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+
+      i {
+        font-size: 2rem;
+      }
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  .login-form {
+    padding: 2rem 1.5rem;
+  }
+}

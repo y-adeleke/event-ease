@@ -7,6 +7,8 @@ import {
   loadEventByIdSuccess,
   loadEventsByUsername,
   loadEventsByUsernameSuccess,
+  loadEventByIdFailure,
+  loadEventsFailure,
 } from "../actions/event.actions";
 import { dummyEvents } from "../dummy-data";
 import { catchError, map, mergeMap, of } from "rxjs";
@@ -31,7 +33,7 @@ export class EventEffects {
           ),
           catchError(error => {
             console.error("Error loading events", error);
-            return of({ type: "[Event API] Load Events Failed" });
+            return of(loadEventsFailure({ error }));
           }),
         ),
       ),
@@ -46,7 +48,7 @@ export class EventEffects {
           map(dto => loadEventByIdSuccess({ event: this.mapEventDtoToEvent(dto) })),
           catchError(error => {
             console.error("Error loading event by ID", error);
-            return of({ type: "[Event API] Load Event Failed" });
+            return of(loadEventByIdFailure({ error }));
           }),
         ),
       ),
@@ -82,7 +84,7 @@ export class EventEffects {
       location: dto.location,
       availableTickets: dto.ticketsLeft,
       price: dto.pricePerTicket,
-      pictures: [dto.imagePath || "assets/images/angular_conf.jpg"],
+      pictures: [`assets/images/events/${dto.category.toLowerCase()}.jpg`],
     };
   }
 
