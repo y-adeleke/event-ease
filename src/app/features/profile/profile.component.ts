@@ -101,29 +101,27 @@ export class ProfileComponent implements OnInit {
   onUpdate() {
     if (this.profileForm.valid) {
       const formValue = this.profileForm.value;
-  
+
       const updatedUser: User = {
         id: this.currentUser.id,
-        username: formValue.username ?? '',
-        firstName: formValue.firstName ?? '',
-        lastName: formValue.lastName ?? '',
-        email: formValue.email ?? '',
-        phone: formValue.phone ?? '',
-        bankName: formValue.bankName ?? '',
-        bankAccountNumber: formValue.bankAccountNumber ?? '',
-        bankRoutingNumber: formValue.bankRoutingNumber ?? '',
-        bankCountry: formValue.bankCountry ?? '',
+        username: formValue.username ?? "",
+        firstName: formValue.firstName ?? "",
+        lastName: formValue.lastName ?? "",
+        email: formValue.email ?? "",
+        phone: formValue.phone ?? "",
+        bankName: formValue.bankName ?? "",
+        bankAccountNumber: formValue.bankAccountNumber ?? "",
+        bankRoutingNumber: formValue.bankRoutingNumber ?? "",
+        bankCountry: formValue.bankCountry ?? "",
         password: this.currentUser.password, // or empty string if not required
       };
-  
+
       this.userService.updateProfile(updatedUser).subscribe(() => {
         alert("Profile updated successfully!");
         this.isEditable = false;
       });
     }
   }
-  
-  
 
   // onUpdate() {
   //   if (this.profileForm.valid) {

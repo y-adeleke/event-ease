@@ -17,21 +17,27 @@ export class AuthService {
     this.clearAuthData();
 
     // Create basic auth header
-    const authHeader = 'Basic ' + btoa(username + ':' + password);
+    const authHeader = "Basic " + btoa(username + ":" + password);
 
-    return this.http.post(`${this.apiUrl}/login`, {}, {
-      headers: new HttpHeaders({
-        'Authorization': authHeader,
-        'Content-Type': 'application/json'
-      }),
-      responseType: "text"
-    }).pipe(
-      tap(token => {
-        // Store the new token
-        this.currentToken = token;
-        sessionStorage.setItem("authToken", token);
-      })
-    );
+    return this.http
+      .post(
+        `${this.apiUrl}/login`,
+        {},
+        {
+          headers: new HttpHeaders({
+            Authorization: authHeader,
+            "Content-Type": "application/json",
+          }),
+          responseType: "text",
+        },
+      )
+      .pipe(
+        tap(token => {
+          // Store the new token
+          this.currentToken = token;
+          sessionStorage.setItem("authToken", token);
+        }),
+      );
   }
 
   signup(user: User): Observable<void> {
