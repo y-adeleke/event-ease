@@ -19,5 +19,6 @@ export class AuthService {
 
   signOut(): void {
     sessionStorage.removeItem("authToken");
+    console.log("Signed out");
   }
 }

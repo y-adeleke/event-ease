@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class EventService {
   private apiUrl = "http://localhost:8080/api/events";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   createEvent(formData: FormData): Observable<void> {
     const token = sessionStorage.getItem("authToken") || "";
@@ -25,5 +25,13 @@ export class EventService {
   getEventById(id: number): Observable<Event | undefined> {
     const event = dummyEvents.find(e => e.id === id);
     return of(event);
+  }
+
+  getEventsByUsername(username: string): Observable<Event[]> {
+    const token = sessionStorage.getItem("authToken") || "";
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<Event[]>(`${this.apiUrl}/member/${username}`, { headers });
   }
 }
