@@ -23,7 +23,7 @@ export class ManageEventComponent implements OnInit {
 
   ngOnInit() {
     const savedUsername = localStorage.getItem("username");
-    loadEventsByUsername({ username: savedUsername || "" });
+    this.store.dispatch(loadEventsByUsername({ username: savedUsername || "" }));
     this.events$ = this.store.select(selectUserEvents);
   }
 }

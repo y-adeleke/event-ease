@@ -6,7 +6,9 @@ import {
   loadEventById,
   loadEventByIdSuccess,
   loadEventsByUsername,
-  loadEventsByUsernameSuccess
+  loadEventsByUsernameSuccess,
+  loadEventByIdFailure,
+  loadEventsFailure
 } from "../actions/event.actions";
 import { dummyEvents } from "../dummy-data";
 import { catchError, map, mergeMap, of } from "rxjs";
