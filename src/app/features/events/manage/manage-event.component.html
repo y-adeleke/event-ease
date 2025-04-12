@@ -1,21 +1,61 @@
-<div class="container mx-auto p-4">
-  <h1 class="text-3xl font-bold mb-4">Your Created Events</h1>
-  <p-table [value]="(events$ | async) || []" class="p-datatable-gridlines">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Date & Time</th>
-        <th>Location</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-event>
-      <tr>
-        <td>{{ event.title }}</td>
-        <td>{{ event.category }}</td>
-        <td>{{ event.dateTime | date: "short" }}</td>
-        <td>{{ event.location }}</td>
-      </tr>
-    </ng-template>
-  </p-table>
+<!-- Add Navbar -->
+<header class="bg-gradient-to-r from-purple-900 to-fuchsia-900 text-white py-4 px-4 fixed w-full top-0 z-50">
+  <div class="container mx-auto">
+    <app-navbar></app-navbar>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container mx-auto p-6 mt-32 mb-16">
+  <div class="manage-events-container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <h1>Your Created Events</h1>
+      <p class="subtitle">Manage and track your event listings</p>
+    </div>
+
+    <!-- Events Table -->
+    <div class="events-table-container">
+      <p-table
+        [value]="(events$ | async) || []"
+        class="events-table"
+        [paginator]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} events"
+        [rowsPerPageOptions]="[10, 25, 50]">
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="title-column">Title</th>
+            <th class="category-column">Category</th>
+            <th class="date-column">Date & Time</th>
+            <th class="location-column">Location</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-event>
+          <tr>
+            <td class="title-cell">{{ event.title }}</td>
+            <td class="category-cell">
+              <span class="category-badge">{{ event.category }}</span>
+            </td>
+            <td class="date-cell">{{ event.dateTime | date: "medium" }}</td>
+            <td class="location-cell">{{ event.location }}</td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" class="empty-message">
+              <div class="empty-state">
+                <i class="fas fa-calendar-plus"></i>
+                <p>No events created yet</p>
+                <a routerLink="/profile/create-event" class="create-event-link"> Create your first event </a>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
 </div>

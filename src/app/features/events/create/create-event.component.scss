@@ -3,3 +3,183 @@ textarea {
     height: 200px;
   }
   
+// Form container styling
+.form-container {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+}
+
+// Form header styling
+.form-header {
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #1e293b;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #4f46e5, #7c3aed);
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
+    }
+  }
+}
+
+// Form group styling
+.form-group {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #475569;
+    margin-bottom: 0.75rem;
+  }
+
+  input, textarea, ::ng-deep .p-dropdown, ::ng-deep .p-calendar {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background: white;
+    color: #1e293b;
+
+    &:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    &::placeholder {
+      color: #94a3b8;
+    }
+  }
+
+  textarea {
+    resize: none;
+    height: 150px;
+    line-height: 1.5;
+  }
+
+  ::ng-deep .p-dropdown {
+    .p-dropdown-label {
+      padding: 0.875rem 1rem;
+    }
+
+    .p-dropdown-trigger {
+      color: #94a3b8;
+    }
+  }
+
+  ::ng-deep .p-calendar {
+    .p-inputtext {
+      border: none;
+      padding: 0.875rem 1rem;
+    }
+
+    .p-datepicker-trigger {
+      color: #94a3b8;
+    }
+  }
+}
+
+// File upload area styling
+.file-upload {
+  border: 2px dashed #e2e8f0;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  background: #f8fafc;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #4f46e5;
+    background: #f1f5f9;
+  }
+
+  p {
+    color: #64748b;
+    margin-bottom: 1rem;
+  }
+
+  .browse-button {
+    background: #4f46e5;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #4338ca;
+      transform: translateY(-1px);
+    }
+  }
+
+  .image-preview {
+    margin-top: 1.5rem;
+
+    img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// Submit button styling
+.submit-button {
+  background: #4f46e5;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+  &:hover:not(:disabled) {
+    background: #4338ca;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Error message styling
+.error-message {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+// Loading state
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+  
